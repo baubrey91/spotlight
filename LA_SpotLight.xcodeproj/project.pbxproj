@@ -20,6 +20,9 @@
 		39591D1B1D9CDE2100427C25 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39591D1A1D9CDE2100427C25 /* MapKit.framework */; };
 		39591D1D1D9CDFB800427C25 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39591D1C1D9CDFB800427C25 /* MapViewController.swift */; };
 		39591D1F1D9E13C300427C25 /* FilmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */; };
+		39E9FA881DA762EA003DC7D4 /* MasterMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */; };
+		39E9FA8A1DA76965003DC7D4 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA891DA76965003DC7D4 /* Pin.swift */; };
+		39E9FA8F1DAB6123003DC7D4 /* FilteredTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		39591D1A1D9CDE2100427C25 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		39591D1C1D9CDFB800427C25 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTableViewController.swift; sourceTree = "<group>"; };
+		39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterMapViewController.swift; sourceTree = "<group>"; };
+		39E9FA891DA76965003DC7D4 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,16 +118,19 @@
 			isa = PBXGroup;
 			children = (
 				39591CE41D9B697A00427C25 /* AppDelegate.swift */,
-				39591CE61D9B697A00427C25 /* LoginViewController.swift */,
-				39591CE81D9B697A00427C25 /* Main.storyboard */,
-				39591CEE1D9B697A00427C25 /* Assets.xcassets */,
-				39591CF01D9B697A00427C25 /* LaunchScreen.storyboard */,
-				39591CF31D9B697A00427C25 /* Info.plist */,
-				39591CEB1D9B697A00427C25 /* LA_SpotLight.xcdatamodeld */,
-				39591D151D9B69EE00427C25 /* ServiceCall.swift */,
 				39591D171D9B6E0200427C25 /* FilmLocation.swift */,
-				39591D1C1D9CDFB800427C25 /* MapViewController.swift */,
 				39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */,
+				39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */,
+				39591CE61D9B697A00427C25 /* LoginViewController.swift */,
+				39591D1C1D9CDFB800427C25 /* MapViewController.swift */,
+				39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */,
+				39E9FA891DA76965003DC7D4 /* Pin.swift */,
+				39591D151D9B69EE00427C25 /* ServiceCall.swift */,
+				39591CE81D9B697A00427C25 /* Main.storyboard */,
+				39591CF01D9B697A00427C25 /* LaunchScreen.storyboard */,
+				39591CEB1D9B697A00427C25 /* LA_SpotLight.xcdatamodeld */,
+				39591CEE1D9B697A00427C25 /* Assets.xcassets */,
+				39591CF31D9B697A00427C25 /* Info.plist */,
 			);
 			path = LA_SpotLight;
 			sourceTree = "<group>";
@@ -295,9 +304,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				39591CE71D9B697A00427C25 /* LoginViewController.swift in Sources */,
+				39E9FA881DA762EA003DC7D4 /* MasterMapViewController.swift in Sources */,
 				39591D1D1D9CDFB800427C25 /* MapViewController.swift in Sources */,
+				39E9FA8A1DA76965003DC7D4 /* Pin.swift in Sources */,
 				39591D181D9B6E0200427C25 /* FilmLocation.swift in Sources */,
 				39591D161D9B69EE00427C25 /* ServiceCall.swift in Sources */,
+				39E9FA8F1DAB6123003DC7D4 /* FilteredTableViewController.swift in Sources */,
 				39591CED1D9B697A00427C25 /* LA_SpotLight.xcdatamodeld in Sources */,
 				39591CE51D9B697A00427C25 /* AppDelegate.swift in Sources */,
 				39591D1F1D9E13C300427C25 /* FilmTableViewController.swift in Sources */,

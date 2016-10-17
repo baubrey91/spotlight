@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LA_SpotLight/ServiceCall.swift"
-            timestampString = "496999171.645647"
+            timestampString = "497510576.399879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LA_SpotLight/FilmLocation.swift"
-            timestampString = "497337523.285635"
+            timestampString = "497510943.190259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "init(json:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LA_SpotLight/ServiceCall.swift"
-            timestampString = "496999171.645647"
+            timestampString = "497420029.548807"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LA_SpotLight/ServiceCall.swift"
-            timestampString = "497014034.555674"
+            timestampString = "497510576.399879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LA_SpotLight/ServiceCall.swift"
-            timestampString = "496999171.645647"
+            timestampString = "497510576.399879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LA_SpotLight/ServiceCall.swift"
-            timestampString = "497014034.555674"
+            timestampString = "497510576.399879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -138,7 +138,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LA_SpotLight/FilmLocation.swift"
-            timestampString = "497337523.285635"
+            timestampString = "497510943.190259"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init(json:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LA_SpotLight/FilmLocation.swift"
+            timestampString = "497510943.190259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
@@ -154,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LA_SpotLight/FilmLocation.swift"
-            timestampString = "497337523.285635"
+            timestampString = "497510943.190259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "init(json:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -169,14 +185,62 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LA_SpotLight/FilmLocation.swift"
-            timestampString = "497337523.285635"
+            filePath = "LA_SpotLight/FilteredTableViewController.swift"
+            timestampString = "497856121.698455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "init(json:)"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LA_SpotLight/FilteredTableViewController.swift"
+            timestampString = "497856121.698455"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LA_SpotLight.FilteredTableViewController.viewDidLoad () -&gt; ()"
+                  moduleName = "LA_SpotLight"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brandonaubrey/Desktop/iOSPersonal/LA_SpotLight/LA_SpotLight/FilteredTableViewController.swift"
+                  timestampString = "497855651.972251"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "907">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LA_SpotLight.FilteredTableViewController.(viewDidLoad () -&gt; ()).(closure #3)"
+                  moduleName = "LA_SpotLight"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brandonaubrey/Desktop/iOSPersonal/LA_SpotLight/LA_SpotLight/FilteredTableViewController.swift"
+                  timestampString = "497855651.973645"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "967">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
