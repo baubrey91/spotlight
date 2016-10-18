@@ -19,10 +19,10 @@ class FilteredTableViewController : UIViewController {
     var film = FilmLocation.self
     
     override func viewDidLoad() {
+        self.title = categoryString
         filteredArray = locationsArray.filter {
             $0.category.contains(categoryString)
         }
-        print(filteredArray.count)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
         locationsArray.sort(by: {$0.production! < $1.production! })
         dateArray = locationsArray

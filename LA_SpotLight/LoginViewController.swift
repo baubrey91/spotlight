@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         activityIndicator.isHidden = true
+        serviceCall()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,11 +46,11 @@ class LoginViewController: UIViewController {
     func serviceCall(){
         let config = URLSessionConfiguration.default // Session Configuration
         let session = URLSession(configuration: config) // Load configuration into Session
-        let url2 = URL(string: "https://data.weho.org/resource/q9u3-sn3t.json")!
+        let url = URL(string: "https://data.weho.org/resource/q9u3-sn3t.json")!
         let categorySet = NSMutableSet()
 
         
-        let task = session.dataTask(with: url2, completionHandler: {
+        let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in
 
             if error != nil {
@@ -71,7 +72,7 @@ class LoginViewController: UIViewController {
                         DispatchQueue.main.sync {
                             
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let vc = storyboard.instantiateViewController(withIdentifier: "rootNav") as! UINavigationController
+                            let vc = storyboard.instantiateViewController(withIdentifier: "navController") as! UINavigationController
                             self.activityIndicator.stopAnimating()
                             self.present(vc, animated: true, completion: nil)
                         }

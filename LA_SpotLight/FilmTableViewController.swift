@@ -13,17 +13,13 @@ class FilmTableViewController : UIViewController {
   
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentController: UISegmentedControl!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var filteredArray = [FilmLocation]()
     var dateArray = [FilmLocation]()
     var category = false
     var film = FilmLocation.self
     
     override func viewDidLoad() {
-        
-        self.activityIndicator.isHidden = false
-        self.activityIndicator.startAnimating()
-        serviceCall()
+
        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
         locationsArray.sort(by: {$0.production! < $1.production! })
@@ -32,56 +28,6 @@ class FilmTableViewController : UIViewController {
         dateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
         filteredArray = locationsArray
     }
-    
-    func serviceCall(){
-        let config = URLSessionConfiguration.default // Session Configuration
-        let session = URLSession(configuration: config) // Load configuration into Session
-        let url2 = URL(string: "https://data.weho.org/resource/q9u3-sn3t.json")!
-        let categorySet = NSMutableSet()
-        
-        
-        let task = session.dataTask(with: url2, completionHandler: {
-            (data, response, error) in
-            
-            if error != nil {
-                
-            } else {
-                
-                do {
-                    
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [[String: Any]]
-                    {
-                        let jsonDict = json
-                        for obj in jsonDict{
-                            let fl = FilmLocation(json: obj)
-                            locationsArray.append(fl!)
-                            categorySet.add(obj["category"]!)
-                        }
-                        categoryArray = (categorySet.allObjects as NSArray) as! [String]
-                        
-                        self.filteredArray = locationsArray
-                        self.viewDidLoad()
-                       /* DispatchQueue.main.sync {
-                            self.filteredArray = locationsArray
-                            self.viewDidLoad()
-                            //self.tableView.reloadData()
-                            
-                          /*  let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let vc = storyboard.instantiateViewController(withIdentifier: "rootNav") as! UINavigationController
-                            self.activityIndicator.stopAnimating()
-                            self.present(vc, animated: true, completion: nil)*/
-                        }*/
-                    }
-                    
-                } catch {
-                    
-                    print("error in JSONSerialization")
-                }
-            }
-        })
-        task.resume()
-    }
-
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentController.selectedSegmentIndex {
@@ -164,15 +110,32 @@ extension FilmTableViewController :  UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     
         filteredArray.removeAll()
-        if searchText.characters.count > 0 {
-            filteredArray = locationsArray.filter {
-                ($0.production?.contains(searchText))!
+        switch segmentController.selectedSegmentIndex{
+        case 0:
+            if searchText.characters.count > 0 {
+                filteredArray = locationsArray.filter {
+                    ($0.production?.contains(searchText))!
+                }
             }
-        }
-        else {
-            filteredArray.append(contentsOf: locationsArray)
+            else {
+                filteredArray.append(contentsOf: locationsArray)
+            }
+        case 1:
+            break
+        default:
+            break
+         /*   if searchText.characters.count > 0 {
+                filteredArray = locationsArray.filter {
+                    ($0.date?.contains(searchText))!
+                }
+            }
+            else {
+                filteredArray.append(contentsOf: locationsArray)
+            }*/
+            
         }
         tableView.reloadData()
+
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WDR-Mj-9h0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -19,22 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LosAngeles" translatesAutoresizingMaskIntoConstraints="NO" id="7eN-br-W5I"/>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hollywoodSign" translatesAutoresizingMaskIntoConstraints="NO" id="m4A-Yd-YOR">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="231" id="sla-r1-dor"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcd-iO-EM4">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ElX-df-vR7"/>
-                                </constraints>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5HD-eV-uxx"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qsY-nh-h6y">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qsY-nh-h6y">
+                                <frame key="frameInset" minX="169" minY="323" width="37" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="heg-Wa-Wfw"/>
                                 </constraints>
@@ -42,19 +28,6 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="qsY-nh-h6y" firstAttribute="centerX" secondItem="wcd-iO-EM4" secondAttribute="centerX" id="12M-Ll-29f"/>
-                            <constraint firstAttribute="trailing" secondItem="7eN-br-W5I" secondAttribute="trailing" id="5YX-ZN-bkK"/>
-                            <constraint firstItem="wcd-iO-EM4" firstAttribute="centerX" secondItem="m4A-Yd-YOR" secondAttribute="centerX" id="HxP-Ka-TLe"/>
-                            <constraint firstItem="7eN-br-W5I" firstAttribute="leading" secondItem="m4A-Yd-YOR" secondAttribute="leading" id="JQi-nQ-gAF"/>
-                            <constraint firstItem="qsY-nh-h6y" firstAttribute="top" secondItem="7eN-br-W5I" secondAttribute="bottom" constant="39" id="XJg-kU-ytk"/>
-                            <constraint firstItem="7eN-br-W5I" firstAttribute="trailing" secondItem="m4A-Yd-YOR" secondAttribute="trailing" id="ahU-f4-x4l"/>
-                            <constraint firstItem="wcd-iO-EM4" firstAttribute="top" secondItem="qsY-nh-h6y" secondAttribute="bottom" constant="34" id="kZm-JM-L1e"/>
-                            <constraint firstItem="7eN-br-W5I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lxn-Of-48x"/>
-                            <constraint firstItem="7eN-br-W5I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ppd-fa-dke"/>
-                            <constraint firstItem="m4A-Yd-YOR" firstAttribute="top" secondItem="wcd-iO-EM4" secondAttribute="bottom" constant="40" id="qQB-kL-pjj"/>
-                            <constraint firstItem="m4A-Yd-YOR" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="x84-pw-e1f"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="qsY-nh-h6y" id="yDY-sB-2Jd"/>
@@ -62,7 +35,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1254" y="73"/>
+            <point key="canvasLocation" x="2018" y="64"/>
         </scene>
         <!--Master Map View Controller-->
         <scene sceneID="XL9-O0-YVf">
@@ -94,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="2998" y="788"/>
         </scene>
-        <!--Film Table View Controller-->
+        <!--LA Spotlight-->
         <scene sceneID="Vcx-zZ-G4c">
             <objects>
                 <viewController id="c6h-hJ-T0Q" customClass="FilmTableViewController" customModule="LA_SpotLight" customModuleProvider="target" sceneMemberID="viewController">
@@ -129,7 +102,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="03E-NL-AJZ" id="Ul4-ed-7s8">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvE-EN-cH0">
@@ -168,13 +141,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tHN-0V-nGW">
-                                <frame key="frameInset" minY="323" width="375" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="yaS-uA-lHx"/>
-                                </constraints>
-                                <color key="color" red="0.0" green="0.14113105519999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -191,10 +157,9 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="2Oq-RP-4Cb"/>
+                    <navigationItem key="navigationItem" title="LA Spotlight" id="2Oq-RP-4Cb"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="tHN-0V-nGW" id="SJs-KT-3o6"/>
                         <outlet property="segmentController" destination="NvV-iS-h6L" id="I66-6x-EbZ"/>
                         <outlet property="tableView" destination="6LS-Zv-gaI" id="4gT-Pr-ijW"/>
                     </connections>
@@ -334,7 +299,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fa8-eI-6Zj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WDR-Mj-9h0" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navController" automaticallyAdjustsScrollViewInsets="NO" id="WDR-Mj-9h0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jbc-Mg-dFc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -347,12 +312,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ee7-TX-MZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2997.5999999999999" y="95.802098950524751"/>
+            <point key="canvasLocation" x="2929" y="96"/>
         </scene>
     </scenes>
     <resources>
-        <image name="LosAngeles" width="2762" height="2070"/>
-        <image name="hollywoodSign" width="550" height="365"/>
         <image name="mapIcon" width="626" height="626"/>
     </resources>
 </document>
