@@ -14,27 +14,31 @@ class FilmTableViewController : UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentController: UISegmentedControl!
     var filteredArray = [FilmLocation]()
+    var filteredCatArray = [String]()
     var dateArray = [FilmLocation]()
     var category = false
     var film = FilmLocation.self
     
     override func viewDidLoad() {
 
-       
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
         locationsArray.sort(by: {$0.production! < $1.production! })
         dateArray = locationsArray
         categoryArray.sort(by: {$0 < $1 })
         dateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
         filteredArray = locationsArray
+        filteredCatArray = categoryArray
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         switch segmentController.selectedSegmentIndex {
-        case 1:
-            return categoryArray.count
-        default:
+        case 0:
             return filteredArray.count
+        case 1:
+            return filteredCatArray.count
+        default:
+            return dateArray.count
         }
     }
     @IBAction func selectSegment(_ sender: AnyObject) {
@@ -67,7 +71,7 @@ extension FilmTableViewController : UITableViewDataSource{
             if filteredArray[indexPath.row].location?.latitude != nil {
             }
         case 1:
-            cell.textLabel!.text = categoryArray[indexPath.row]
+            cell.textLabel!.text = filteredCatArray[indexPath.row]
             
         default:
             cell.textLabel?.text = String(describing: dateArray[indexPath.row].date!).stripTime()
@@ -109,9 +113,11 @@ extension FilmTableViewController :  UISearchBarDelegate {
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     
-        filteredArray.removeAll()
+
         switch segmentController.selectedSegmentIndex{
         case 0:
+            
+            filteredArray.removeAll()
             if searchText.characters.count > 0 {
                 filteredArray = locationsArray.filter {
                     ($0.production?.contains(searchText))!
@@ -121,17 +127,18 @@ extension FilmTableViewController :  UISearchBarDelegate {
                 filteredArray.append(contentsOf: locationsArray)
             }
         case 1:
-            break
-        default:
-            break
-         /*   if searchText.characters.count > 0 {
-                filteredArray = locationsArray.filter {
-                    ($0.date?.contains(searchText))!
+            
+            filteredCatArray.removeAll()
+            if searchText.characters.count > 0 {
+                filteredCatArray = categoryArray.filter {
+                    ($0.contains(searchText))
                 }
             }
             else {
-                filteredArray.append(contentsOf: locationsArray)
-            }*/
+                filteredCatArray.append(contentsOf: categoryArray)
+            }
+        default:
+            break
             
         }
         tableView.reloadData()
