@@ -13,6 +13,9 @@
 
 import UIKit
 
+var locationsArray = [FilmLocation]()
+var categoryArray = [String]()
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!

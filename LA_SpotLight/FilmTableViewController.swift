@@ -13,21 +13,21 @@ class FilmTableViewController : UIViewController {
   
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentController: UISegmentedControl!
-    var filteredArray = [FilmLocation]()
-    var filteredCatArray = [String]()
-    var dateArray = [FilmLocation]()
-    var category = false
-    var film = FilmLocation.self
+    var filteredArray =         [FilmLocation]()
+    var filteredCatArray =      [String]()
+    var category =              false
+    var film =                  FilmLocation.self
+    let yearsArray =            ["2012","2013","2014","2015","2016+"]
     
     override func viewDidLoad() {
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
         locationsArray.sort(by: {$0.production! < $1.production! })
-        dateArray = locationsArray
         categoryArray.sort(by: {$0 < $1 })
-        dateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
         filteredArray = locationsArray
         filteredCatArray = categoryArray
+
+
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,7 +38,7 @@ class FilmTableViewController : UIViewController {
         case 1:
             return filteredCatArray.count
         default:
-            return dateArray.count
+            return yearsArray.count
         }
     }
     @IBAction func selectSegment(_ sender: AnyObject) {
@@ -72,12 +72,13 @@ extension FilmTableViewController : UITableViewDataSource{
             }
         case 1:
             cell.textLabel!.text = filteredCatArray[indexPath.row]
+            cell.imageView?.image = UIImage(named: "cameraIcon")
+            cell.imageView?.isHidden = false
             
         default:
-            cell.textLabel?.text = String(describing: dateArray[indexPath.row].date!).stripTime()
-            cell.imageView?.isHidden = (dateArray[indexPath.row].location?.latitude != nil) ?
-                false :
-                true
+            cell.textLabel?.text = yearsArray[indexPath.row]
+            cell.imageView?.image = UIImage(named: "calendarIcon")
+            cell.imageView?.isHidden = false
         }
         return cell
         
@@ -90,6 +91,11 @@ extension FilmTableViewController : UITableViewDelegate {
        
         switch segmentController.selectedSegmentIndex {
             
+        case 0:
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
+            vc.film = filteredArray[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "filteredTableViewController") as! FilteredTableViewController
@@ -98,14 +104,14 @@ extension FilmTableViewController : UITableViewDelegate {
             
         default:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
-            vc.film = filteredArray[indexPath.row]
+            let vc = storyboard.instantiateViewController(withIdentifier: "monthTableViewController") as! MonthTableViewController
+            if indexPath.row == 4 {
+                vc.year = 2016
+            } else {
+                vc.year = Int(yearsArray[indexPath.row])!
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
     }
 }
 
@@ -142,9 +148,9 @@ extension FilmTableViewController :  UISearchBarDelegate {
             
         }
         tableView.reloadData()
-
     }
 }
+
 
 
 
