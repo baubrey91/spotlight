@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
 
             if error != nil {
                 
-                let alertController = UIAlertController(title: "Error", message: "\(error!)", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Error", message: "Could Not Connect To Internet", preferredStyle: .alert)
                 let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in }
                 alertController.addAction(OKAction)
                 self.present(alertController, animated: true)
