@@ -11,8 +11,10 @@ import UIKit
 
 class FilmTableViewController : UIViewController {
   
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var segmentController: UISegmentedControl!
+    @IBOutlet weak var tableView:           UITableView!
+    @IBOutlet weak var segmentController:   UISegmentedControl!
+    @IBOutlet weak var searchBar:           UISearchBar!
+   
     var filteredArray =         [FilmLocation]()
     var filteredCatArray =      [String]()
     var category =              false
@@ -26,6 +28,8 @@ class FilmTableViewController : UIViewController {
         categoryArray.sort(by: {$0 < $1 })
         filteredArray = locationsArray
         filteredCatArray = categoryArray
+        searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.enablesReturnKeyAutomatically = false
 
     }
 
@@ -40,6 +44,7 @@ class FilmTableViewController : UIViewController {
             return yearsArray.count
         }
     }
+    
     @IBAction func selectSegment(_ sender: AnyObject) {
         tableView.reloadData()
     }
@@ -116,7 +121,6 @@ extension FilmTableViewController :  UISearchBarDelegate {
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     
-
         switch segmentController.selectedSegmentIndex{
         case 0:
             
@@ -145,5 +149,9 @@ extension FilmTableViewController :  UISearchBarDelegate {
             
         }
         tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        searchBar.resignFirstResponder()
     }
 }

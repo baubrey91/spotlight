@@ -17,6 +17,7 @@ class FilteredTableViewController : UIViewController {
     var dateArray = [FilmLocation]()
     var category = false
     var film = FilmLocation.self
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         
@@ -29,6 +30,8 @@ class FilteredTableViewController : UIViewController {
         dateArray = locationsArray
         categoryArray.sort(by: {$0 < $1 })
         dateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
+        searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.enablesReturnKeyAutomatically = false
 
     }
     
@@ -65,6 +68,7 @@ extension FilteredTableViewController : UITableViewDelegate {
 }
 
 extension FilteredTableViewController :  UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredArray.removeAll()
         
@@ -78,4 +82,9 @@ extension FilteredTableViewController :  UISearchBarDelegate {
         }
         tableView.reloadData()
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        searchBar.resignFirstResponder()
+    }
+    
 }

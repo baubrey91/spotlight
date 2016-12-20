@@ -43,6 +43,7 @@ class FilteredDatesTableViewController: UITableViewController {
             }
         }
         filteredDateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
