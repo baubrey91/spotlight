@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3949FC261DBF1B8100678BC9 /* FilteredDatesTbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3949FC251DBF1B8100678BC9 /* FilteredDatesTbleViewController.swift */; };
+		3949FC261DBF1B8100678BC9 /* FilteredDatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3949FC251DBF1B8100678BC9 /* FilteredDatesTableViewController.swift */; };
 		39591CE51D9B697A00427C25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39591CE41D9B697A00427C25 /* AppDelegate.swift */; };
 		39591CE71D9B697A00427C25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39591CE61D9B697A00427C25 /* LoginViewController.swift */; };
 		39591CEA1D9B697A00427C25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39591CE81D9B697A00427C25 /* Main.storyboard */; };
@@ -20,7 +20,6 @@
 		39591D1B1D9CDE2100427C25 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39591D1A1D9CDE2100427C25 /* MapKit.framework */; };
 		39591D1D1D9CDFB800427C25 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39591D1C1D9CDFB800427C25 /* MapViewController.swift */; };
 		39591D1F1D9E13C300427C25 /* FilmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */; };
-		3980906C1DBB3246005348A3 /* MonthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980906B1DBB3246005348A3 /* MonthTableViewController.swift */; };
 		39E9FA881DA762EA003DC7D4 /* MasterMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */; };
 		39E9FA8A1DA76965003DC7D4 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA891DA76965003DC7D4 /* Pin.swift */; };
 		39E9FA8F1DAB6123003DC7D4 /* FilteredTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */; };
@@ -44,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3949FC251DBF1B8100678BC9 /* FilteredDatesTbleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredDatesTbleViewController.swift; sourceTree = "<group>"; };
+		3949FC251DBF1B8100678BC9 /* FilteredDatesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredDatesTableViewController.swift; sourceTree = "<group>"; };
 		39591CE11D9B697A00427C25 /* LA_SpotLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LA_SpotLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39591CE41D9B697A00427C25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39591CE61D9B697A00427C25 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +62,6 @@
 		39591D1A1D9CDE2100427C25 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		39591D1C1D9CDFB800427C25 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTableViewController.swift; sourceTree = "<group>"; };
-		3980906B1DBB3246005348A3 /* MonthTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthTableViewController.swift; sourceTree = "<group>"; };
 		39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterMapViewController.swift; sourceTree = "<group>"; };
 		39E9FA891DA76965003DC7D4 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredTableViewController.swift; sourceTree = "<group>"; };
@@ -120,14 +118,13 @@
 			isa = PBXGroup;
 			children = (
 				39591CE41D9B697A00427C25 /* AppDelegate.swift */,
-				3949FC251DBF1B8100678BC9 /* FilteredDatesTbleViewController.swift */,
+				3949FC251DBF1B8100678BC9 /* FilteredDatesTableViewController.swift */,
 				39591D171D9B6E0200427C25 /* FilmLocation.swift */,
 				39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */,
 				39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */,
 				39591CE61D9B697A00427C25 /* LoginViewController.swift */,
 				39591D1C1D9CDFB800427C25 /* MapViewController.swift */,
 				39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */,
-				3980906B1DBB3246005348A3 /* MonthTableViewController.swift */,
 				39E9FA891DA76965003DC7D4 /* Pin.swift */,
 				39591CE81D9B697A00427C25 /* Main.storyboard */,
 				39591CF01D9B697A00427C25 /* LaunchScreen.storyboard */,
@@ -307,12 +304,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				39591CE71D9B697A00427C25 /* LoginViewController.swift in Sources */,
-				3980906C1DBB3246005348A3 /* MonthTableViewController.swift in Sources */,
 				39E9FA881DA762EA003DC7D4 /* MasterMapViewController.swift in Sources */,
 				39591D1D1D9CDFB800427C25 /* MapViewController.swift in Sources */,
 				39E9FA8A1DA76965003DC7D4 /* Pin.swift in Sources */,
 				39591D181D9B6E0200427C25 /* FilmLocation.swift in Sources */,
-				3949FC261DBF1B8100678BC9 /* FilteredDatesTbleViewController.swift in Sources */,
+				3949FC261DBF1B8100678BC9 /* FilteredDatesTableViewController.swift in Sources */,
 				39E9FA8F1DAB6123003DC7D4 /* FilteredTableViewController.swift in Sources */,
 				39591CED1D9B697A00427C25 /* LA_SpotLight.xcdatamodeld in Sources */,
 				39591CE51D9B697A00427C25 /* AppDelegate.swift in Sources */,

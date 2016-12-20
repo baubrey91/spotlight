@@ -19,6 +19,7 @@ class FilteredTableViewController : UIViewController {
     var film = FilmLocation.self
     
     override func viewDidLoad() {
+        
         self.title = categoryString
         filteredArray = locationsArray.filter {
             $0.category.contains(categoryString)
@@ -28,10 +29,7 @@ class FilteredTableViewController : UIViewController {
         dateArray = locationsArray
         categoryArray.sort(by: {$0 < $1 })
         dateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
-        //filteredArray = locationsArray
-        
-        //let dateFormatter = DateFormatter()
-        //dateFormatter.dateFormat = "yyyy-MM-dd"
+
     }
     
     
@@ -49,9 +47,7 @@ extension FilteredTableViewController : UITableViewDataSource{
         cell.imageView?.isHidden = (filteredArray[indexPath.row].location?.latitude != nil) ?
                 false :
             true
-            /*cell.imageView?.isHidden = (filteredArray[indexPath.row].location?.latitude != nil) ?
-             true :
-             false*/
+
         return cell
     }
 }
@@ -64,11 +60,6 @@ extension FilteredTableViewController : UITableViewDelegate {
         vc.film = filteredArray[indexPath.row]
         
         self.navigationController?.pushViewController(vc, animated: true)
-        
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
     }
 }

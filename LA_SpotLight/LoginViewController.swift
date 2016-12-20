@@ -6,11 +6,6 @@
 //  Copyright © 2016 Brandon Aubrey. All rights reserved.
 //
 
-
-//UISearchController
-//searchbar in map
-//toolbar mapping
-
 import UIKit
 
 var locationsArray = [FilmLocation]()
@@ -35,8 +30,6 @@ class LoginViewController: UIViewController {
 
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
-            //serviceCall()
-            //getServices()
             self.activityIndicator.stopAnimating()
         }
     }
@@ -57,6 +50,11 @@ class LoginViewController: UIViewController {
             (data, response, error) in
 
             if error != nil {
+                
+                let alertController = UIAlertController(title: "Error", message: "\(error!)", preferredStyle: .alert)
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in }
+                alertController.addAction(OKAction)
+                self.present(alertController, animated: true)
                 
             } else {
                 

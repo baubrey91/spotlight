@@ -27,7 +27,6 @@ class FilmTableViewController : UIViewController {
         filteredArray = locationsArray
         filteredCatArray = categoryArray
 
-
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,8 +67,6 @@ extension FilmTableViewController : UITableViewDataSource{
             cell.imageView?.isHidden = (filteredArray[indexPath.row].location?.latitude != nil) ?
                 false :
                 true
-            if filteredArray[indexPath.row].location?.latitude != nil {
-            }
         case 1:
             cell.textLabel!.text = filteredCatArray[indexPath.row]
             cell.imageView?.image = UIImage(named: "cameraIcon")
@@ -104,7 +101,7 @@ extension FilmTableViewController : UITableViewDelegate {
             
         default:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "monthTableViewController") as! MonthTableViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "filteredDatesTableViewController") as! FilteredDatesTableViewController
             if indexPath.row == 4 {
                 vc.year = 2016
             } else {
@@ -150,7 +147,3 @@ extension FilmTableViewController :  UISearchBarDelegate {
         tableView.reloadData()
     }
 }
-
-
-
-
