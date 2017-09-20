@@ -23,6 +23,11 @@
 		39E9FA881DA762EA003DC7D4 /* MasterMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */; };
 		39E9FA8A1DA76965003DC7D4 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA891DA76965003DC7D4 /* Pin.swift */; };
 		39E9FA8F1DAB6123003DC7D4 /* FilteredTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */; };
+		CA1AF3751F7031E100B0C396 /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF3741F7031E100B0C396 /* FoldingCell.swift */; };
+		CA1AF3771F70322300B0C396 /* FilmDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF3761F70322300B0C396 /* FilmDetailCell.swift */; };
+		CA1AF3791F70658F00B0C396 /* ScrollableSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF3781F70658F00B0C396 /* ScrollableSegmentController.swift */; };
+		CA1AF37B1F7065D400B0C396 /* CustomSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF37A1F7065D400B0C396 /* CustomSegmentController.swift */; };
+		CA1AF39F1F71C77700B0C396 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF39E1F71C77700B0C396 /* Gradient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,11 @@
 		39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterMapViewController.swift; sourceTree = "<group>"; };
 		39E9FA891DA76965003DC7D4 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredTableViewController.swift; sourceTree = "<group>"; };
+		CA1AF3741F7031E100B0C396 /* FoldingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
+		CA1AF3761F70322300B0C396 /* FilmDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmDetailCell.swift; sourceTree = "<group>"; };
+		CA1AF3781F70658F00B0C396 /* ScrollableSegmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentController.swift; sourceTree = "<group>"; };
+		CA1AF37A1F7065D400B0C396 /* CustomSegmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentController.swift; sourceTree = "<group>"; };
+		CA1AF39E1F71C77700B0C396 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,20 +127,16 @@
 		39591CE31D9B697A00427C25 /* LA_SpotLight */ = {
 			isa = PBXGroup;
 			children = (
+				CA4541691F702B1A00BADDFA /* ViewController */,
+				CA4541681F702B1500BADDFA /* View */,
+				CA4541671F702B0D00BADDFA /* Model */,
 				39591CE41D9B697A00427C25 /* AppDelegate.swift */,
-				3949FC251DBF1B8100678BC9 /* FilteredDatesTableViewController.swift */,
-				39591D171D9B6E0200427C25 /* FilmLocation.swift */,
-				39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */,
-				39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */,
-				39591CE61D9B697A00427C25 /* LoginViewController.swift */,
-				39591D1C1D9CDFB800427C25 /* MapViewController.swift */,
-				39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */,
-				39E9FA891DA76965003DC7D4 /* Pin.swift */,
 				39591CE81D9B697A00427C25 /* Main.storyboard */,
 				39591CF01D9B697A00427C25 /* LaunchScreen.storyboard */,
 				39591CEB1D9B697A00427C25 /* LA_SpotLight.xcdatamodeld */,
 				39591CEE1D9B697A00427C25 /* Assets.xcassets */,
 				39591CF31D9B697A00427C25 /* Info.plist */,
+				CA1AF39E1F71C77700B0C396 /* Gradient.swift */,
 			);
 			path = LA_SpotLight;
 			sourceTree = "<group>";
@@ -159,6 +165,39 @@
 				39591D1A1D9CDE2100427C25 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA4541671F702B0D00BADDFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				39E9FA891DA76965003DC7D4 /* Pin.swift */,
+				39591D171D9B6E0200427C25 /* FilmLocation.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CA4541681F702B1500BADDFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA1AF37A1F7065D400B0C396 /* CustomSegmentController.swift */,
+				CA1AF3781F70658F00B0C396 /* ScrollableSegmentController.swift */,
+				CA1AF3741F7031E100B0C396 /* FoldingCell.swift */,
+				CA1AF3761F70322300B0C396 /* FilmDetailCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		CA4541691F702B1A00BADDFA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				39591CE61D9B697A00427C25 /* LoginViewController.swift */,
+				39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */,
+				39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */,
+				3949FC251DBF1B8100678BC9 /* FilteredDatesTableViewController.swift */,
+				39591D1C1D9CDFB800427C25 /* MapViewController.swift */,
+				39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,13 +344,18 @@
 			files = (
 				39591CE71D9B697A00427C25 /* LoginViewController.swift in Sources */,
 				39E9FA881DA762EA003DC7D4 /* MasterMapViewController.swift in Sources */,
+				CA1AF3771F70322300B0C396 /* FilmDetailCell.swift in Sources */,
 				39591D1D1D9CDFB800427C25 /* MapViewController.swift in Sources */,
 				39E9FA8A1DA76965003DC7D4 /* Pin.swift in Sources */,
+				CA1AF39F1F71C77700B0C396 /* Gradient.swift in Sources */,
 				39591D181D9B6E0200427C25 /* FilmLocation.swift in Sources */,
 				3949FC261DBF1B8100678BC9 /* FilteredDatesTableViewController.swift in Sources */,
 				39E9FA8F1DAB6123003DC7D4 /* FilteredTableViewController.swift in Sources */,
+				CA1AF37B1F7065D400B0C396 /* CustomSegmentController.swift in Sources */,
+				CA1AF3791F70658F00B0C396 /* ScrollableSegmentController.swift in Sources */,
 				39591CED1D9B697A00427C25 /* LA_SpotLight.xcdatamodeld in Sources */,
 				39591CE51D9B697A00427C25 /* AppDelegate.swift in Sources */,
+				CA1AF3751F7031E100B0C396 /* FoldingCell.swift in Sources */,
 				39591D1F1D9E13C300427C25 /* FilmTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,44 +9,49 @@
 import Foundation
 import UIKit
 
+
+enum filterMode {
+    case film
+    case category
+    case date
+}
+
 class FilmTableViewController : UIViewController {
   
     @IBOutlet weak var tableView:           UITableView!
-    @IBOutlet weak var segmentController:   UISegmentedControl!
-    @IBOutlet weak var searchBar:           UISearchBar!
+    @IBOutlet weak var segmentControl:      ScrollableSegmentControl!
    
+    let kCloseCellHeight: CGFloat = 76
+    let kOpenCellHeight: CGFloat = 388
+    
+    //needs to be changed to size of filtered array
+    let kRowsCount = 1000
+
+    var currentMode: filterMode = .film
     var filteredArray =         [FilmLocation]()
     var filteredCatArray =      [String]()
     var category =              false
     var film =                  FilmLocation.self
     let yearsArray =            ["2012","2013","2014","2015","2016+"]
+    var cellHeights: [CGFloat] = []
+    //var cellHeights = (0..<1000).map { _ in C.CellHeight.close }
     
     override func viewDidLoad() {
 
+        setup()
+        segmentControl.segmentControlDelegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
         locationsArray.sort(by: {$0.production! < $1.production! })
         categoryArray.sort(by: {$0 < $1 })
         filteredArray = locationsArray
         filteredCatArray = categoryArray
-        searchBar.returnKeyType = UIReturnKeyType.done
-        searchBar.enablesReturnKeyAutomatically = false
-
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch segmentController.selectedSegmentIndex {
-        case 0:
-            return filteredArray.count
-        case 1:
-            return filteredCatArray.count
-        default:
-            return yearsArray.count
-        }
     }
     
-    @IBAction func selectSegment(_ sender: AnyObject) {
-        tableView.reloadData()
+    private func setup() {
+        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
+        tableView.estimatedRowHeight = kCloseCellHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
     }
     
     @IBAction func mapButton(_ sender: AnyObject) {
@@ -56,102 +61,99 @@ class FilmTableViewController : UIViewController {
         vc.filteredArray = filteredArray
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
-extension FilmTableViewController : UITableViewDataSource{
+extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        switch currentMode {
+        case .film:
+            return filteredArray.count
+        case .category:
+            return filteredCatArray.count
+        case .date:
+            return yearsArray.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard case let cell as FoldingCell = cell else {
+            return
+        }
+        
+        cell.backgroundColor = .clear
+        
+        if cellHeights[indexPath.row] == kCloseCellHeight {
+            cell.selectedAnimation(false, animated: false, completion:nil)
+        } else {
+            cell.selectedAnimation(true, animated: false, completion: nil)
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as UITableViewCell
-        cell.imageView?.image = UIImage(named: "mapIcon")
-        cell.imageView?.isHidden = true
-        switch segmentController.selectedSegmentIndex {
-        case 0:
-            cell.textLabel!.text = filteredArray[indexPath.row].production
-            cell.imageView?.isHidden = (filteredArray[indexPath.row].location?.latitude != nil) ?
-                false :
-                true
-        case 1:
-            cell.textLabel!.text = filteredCatArray[indexPath.row]
-            cell.imageView?.image = UIImage(named: "cameraIcon")
-            cell.imageView?.isHidden = false
-            
-        default:
+        switch currentMode {
+        case .film:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FilmDetailCell
+            let durations: [TimeInterval] = [0.26, 0.2, 0.2]
+            cell.durationsForExpandedState = durations
+            cell.durationsForCollapsedState = durations
+            cell.film = filteredArray[indexPath.row]
+            return cell
+        case .category:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as UITableViewCell
+            cell.textLabel?.text = filteredCatArray[indexPath.row]
+            return cell
+        case .date:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as UITableViewCell
             cell.textLabel?.text = yearsArray[indexPath.row]
-            cell.imageView?.image = UIImage(named: "calendarIcon")
-            cell.imageView?.isHidden = false
+            return cell
         }
-        return cell
-        
     }
-}
-
-extension FilmTableViewController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if currentMode == .film {
+            return cellHeights[indexPath.row]
+        }
+        return 50
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-        switch segmentController.selectedSegmentIndex {
-            
-        case 0:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
-            vc.film = filteredArray[indexPath.row]
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 1:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "filteredTableViewController") as! FilteredTableViewController
-            vc.categoryString = categoryArray[indexPath.row]
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        default:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "filteredDatesTableViewController") as! FilteredDatesTableViewController
-            if indexPath.row == 4 {
-                vc.year = 2016
-            } else {
-                vc.year = Int(yearsArray[indexPath.row])!
+        if currentMode == .film {
+            let cell = tableView.cellForRow(at: indexPath) as! FilmDetailCell
+            if cell.isAnimating() {
+                return
             }
-            self.navigationController?.pushViewController(vc, animated: true)
+            var duration = 0.0
+            let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
+            if cellIsCollapsed {
+                cellHeights[indexPath.row] = kOpenCellHeight
+                cell.selectedAnimation(true, animated: true, completion: nil)
+                duration = 1.0
+            } else {
+                cellHeights[indexPath.row] = kCloseCellHeight
+                cell.selectedAnimation(false, animated: true, completion: nil)
+                duration = 1.2
+            }
+            
+            UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { _ in
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }, completion: nil)
         }
     }
 }
 
-extension FilmTableViewController :  UISearchBarDelegate {
-   
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    
-        switch segmentController.selectedSegmentIndex{
+extension FilmTableViewController: ScrollableSegmentControlDelegate {
+    func segmentControl(_ segmentControl: ScrollableSegmentControl, didSelectIndex index: Int) {
+        switch index {
         case 0:
-            
-            filteredArray.removeAll()
-            if searchText.characters.count > 0 {
-                filteredArray = locationsArray.filter {
-                    ($0.production?.contains(searchText))!
-                }
-            }
-            else {
-                filteredArray.append(contentsOf: locationsArray)
-            }
+            currentMode = .film
         case 1:
-            
-            filteredCatArray.removeAll()
-            if searchText.characters.count > 0 {
-                filteredCatArray = categoryArray.filter {
-                    ($0.contains(searchText))
-                }
-            }
-            else {
-                filteredCatArray.append(contentsOf: categoryArray)
-            }
+            currentMode = .category
         default:
-            break
-            
+            currentMode = .date
         }
         tableView.reloadData()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        searchBar.resignFirstResponder()
     }
 }

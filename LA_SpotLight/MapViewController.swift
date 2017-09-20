@@ -29,13 +29,6 @@ class MapViewController: UIViewController {
         dateLabel.text = String(describing: (film?.date!)!).stripTime()
         permitLabel.text = film?.permitNumber
         addressLabel.text = film?.locationAddress
-        
-        print(film?.production)
-        print(film?.productionCompany)
-        print(film?.category)
-        print(String(describing: (film?.date!)!).stripTime())
-        print(film?.permitNumber)
-        print(film?.locationAddress)
        
         guard let loc = film?.location else {
             

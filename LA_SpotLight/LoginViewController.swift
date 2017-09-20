@@ -16,7 +16,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         activityIndicator.isHidden = true
         serviceCall()
     }
@@ -34,18 +33,12 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func loginButton(_ sender: AnyObject) {
-        self.activityIndicator.isHidden = false
-        self.activityIndicator.startAnimating()
-        serviceCall()
-    }
     func serviceCall(){
         let config = URLSessionConfiguration.default // Session Configuration
         let session = URLSession(configuration: config) // Load configuration into Session
         let url = URL(string: "https://data.weho.org/resource/q9u3-sn3t.json")!
         let categorySet = NSMutableSet()
 
-        
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in
 
@@ -57,7 +50,6 @@ class LoginViewController: UIViewController {
                 self.present(alertController, animated: true)
                 
             } else {
-                
                 do {
                     
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [[String: Any]]
@@ -78,7 +70,6 @@ class LoginViewController: UIViewController {
                             self.present(vc, animated: true, completion: nil)
                         }
                     }
-                    
                 } catch {
                     
                     print("error in JSONSerialization")
@@ -88,4 +79,3 @@ class LoginViewController: UIViewController {
         task.resume()
     }
 }
-
