@@ -119,11 +119,13 @@ extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if currentMode == .film {
+        switch currentMode {
+        case .film:
             let cell = tableView.cellForRow(at: indexPath) as! FilmDetailCell
             if cell.isAnimating() {
                 return
             }
+            
             var duration = 0.0
             let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
             if cellIsCollapsed {
@@ -140,6 +142,21 @@ extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.beginUpdates()
                 tableView.endUpdates()
             }, completion: nil)
+            
+        case .category:
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "filteredTableViewController") as! FilteredTableViewController
+            vc.categoryString = categoryArray[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .date:
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "filteredDatesTableViewController") as! FilteredDatesTableViewController
+            if indexPath.row == 4 {
+                vc.year = 2016
+            } else {
+                vc.year = Int(yearsArray[indexPath.row])!
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

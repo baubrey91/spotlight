@@ -17,6 +17,13 @@ class FilteredTableViewController : UIViewController {
     var dateArray = [FilmLocation]()
     var category = false
     var film = FilmLocation.self
+    let kCloseCellHeight: CGFloat = 76
+    let kOpenCellHeight: CGFloat = 388
+    
+    //needs to be changed to size of filtered array
+    let kRowsCount = 1000
+    var cellHeights: [CGFloat] = []
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
@@ -32,7 +39,8 @@ class FilteredTableViewController : UIViewController {
         dateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
         searchBar.returnKeyType = UIReturnKeyType.done
         searchBar.enablesReturnKeyAutomatically = false
-
+        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
+        
     }
     
     
@@ -41,33 +49,71 @@ class FilteredTableViewController : UIViewController {
     }
 }
 
-extension FilteredTableViewController : UITableViewDataSource{
+extension FilteredTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as UITableViewCell
-        cell.imageView?.image = UIImage(named: "mapIcon")
-        cell.textLabel!.text = filteredArray[indexPath.row].production
-        cell.imageView?.isHidden = (filteredArray[indexPath.row].location?.latitude != nil) ?
-                false :
-            true
-
+        /*let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as UITableViewCell
+         cell.imageView?.image = UIImage(named: "mapIcon")
+         cell.textLabel!.text = filteredArray[indexPath.row].production
+         cell.imageView?.isHidden = (filteredArray[indexPath.row].location?.latitude != nil) ?
+         false :
+         true
+         
+         return cell
+         }*/
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FilmDetailCell
+        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
+        cell.durationsForExpandedState = durations
+        cell.durationsForCollapsedState = durations
+        cell.film = filteredArray[indexPath.row]
+        cell.filmLabel.text = filteredArray[indexPath.row].production
         return cell
     }
-}
-
-extension FilteredTableViewController : UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
-        vc.film = filteredArray[indexPath.row]
-        
-        self.navigationController?.pushViewController(vc, animated: true)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeights[indexPath.row]
         
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard case let cell as FoldingCell = cell else {
+            return
+        }
+        
+        cell.backgroundColor = .clear
+        
+        if cellHeights[indexPath.row] == kCloseCellHeight {
+            cell.selectedAnimation(false, animated: false, completion:nil)
+        } else {
+            cell.selectedAnimation(true, animated: false, completion: nil)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! FilmDetailCell
+        if cell.isAnimating() {
+            return
+        }
+        
+        var duration = 0.0
+        let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
+        if cellIsCollapsed {
+            cellHeights[indexPath.row] = kOpenCellHeight
+            cell.selectedAnimation(true, animated: true, completion: nil)
+            duration = 1.0
+        } else {
+            cellHeights[indexPath.row] = kCloseCellHeight
+            cell.selectedAnimation(false, animated: true, completion: nil)
+            duration = 1.2
+        }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { _ in
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
+    }
 }
-
-extension FilteredTableViewController :  UISearchBarDelegate {
+extension FilteredTableViewController:  UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredArray.removeAll()
@@ -86,5 +132,4 @@ extension FilteredTableViewController :  UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         searchBar.resignFirstResponder()
     }
-    
 }
