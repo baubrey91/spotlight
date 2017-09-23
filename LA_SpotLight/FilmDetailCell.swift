@@ -31,6 +31,7 @@ class FilmDetailCell: FoldingCell {
             self.categoryLabel.text = film?.category
             
             guard let loc = film?.location else {
+                mapView.isHidden = true
                 return
                 
 //                let alert = UIAlertController(title: "Alert", message: "Sorry no gps coordinates on file", preferredStyle: UIAlertControllerStyle.alert)
@@ -38,6 +39,7 @@ class FilmDetailCell: FoldingCell {
 //                self.present(alert, animated: true, completion: nil)
 //                return
             }
+            mapView.isHidden = false
             let pin = Pin(title: (film?.production)!, coordinate: loc)
             let regionRadius: CLLocationDistance = 1000
             let coordinateRegion = MKCoordinateRegionMakeWithDistance(pin.coordinate,regionRadius * 2.0, regionRadius * 2.0)

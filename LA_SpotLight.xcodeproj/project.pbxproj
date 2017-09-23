@@ -23,6 +23,8 @@
 		39E9FA881DA762EA003DC7D4 /* MasterMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */; };
 		39E9FA8A1DA76965003DC7D4 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA891DA76965003DC7D4 /* Pin.swift */; };
 		39E9FA8F1DAB6123003DC7D4 /* FilteredTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */; };
+		CA153F911F75DB000003EA74 /* CEReversibleAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA153F901F75DB000003EA74 /* CEReversibleAnimationController.m */; };
+		CA153F941F75DB430003EA74 /* CEFoldAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA153F931F75DB430003EA74 /* CEFoldAnimationController.m */; };
 		CA1AF3751F7031E100B0C396 /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF3741F7031E100B0C396 /* FoldingCell.swift */; };
 		CA1AF3771F70322300B0C396 /* FilmDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF3761F70322300B0C396 /* FilmDetailCell.swift */; };
 		CA1AF3791F70658F00B0C396 /* ScrollableSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF3781F70658F00B0C396 /* ScrollableSegmentController.swift */; };
@@ -70,6 +72,11 @@
 		39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterMapViewController.swift; sourceTree = "<group>"; };
 		39E9FA891DA76965003DC7D4 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		39E9FA8E1DAB6123003DC7D4 /* FilteredTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredTableViewController.swift; sourceTree = "<group>"; };
+		CA153F8F1F75DB000003EA74 /* CEReversibleAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEReversibleAnimationController.h; sourceTree = "<group>"; };
+		CA153F901F75DB000003EA74 /* CEReversibleAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CEReversibleAnimationController.m; sourceTree = "<group>"; };
+		CA153F921F75DB430003EA74 /* CEFoldAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEFoldAnimationController.h; sourceTree = "<group>"; };
+		CA153F931F75DB430003EA74 /* CEFoldAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CEFoldAnimationController.m; sourceTree = "<group>"; };
+		CA153F951F75DD5A0003EA74 /* LA_SpotLight-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LA_SpotLight-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA1AF3741F7031E100B0C396 /* FoldingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
 		CA1AF3761F70322300B0C396 /* FilmDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmDetailCell.swift; sourceTree = "<group>"; };
 		CA1AF3781F70658F00B0C396 /* ScrollableSegmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentController.swift; sourceTree = "<group>"; };
@@ -111,6 +118,7 @@
 				39591D061D9B697A00427C25 /* LA_SpotLightUITests */,
 				39591CE21D9B697A00427C25 /* Products */,
 				39591D191D9CDE2100427C25 /* Frameworks */,
+				CA153F951F75DD5A0003EA74 /* LA_SpotLight-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +139,10 @@
 				CA4541681F702B1500BADDFA /* View */,
 				CA4541671F702B0D00BADDFA /* Model */,
 				39591CE41D9B697A00427C25 /* AppDelegate.swift */,
+				CA153F921F75DB430003EA74 /* CEFoldAnimationController.h */,
+				CA153F931F75DB430003EA74 /* CEFoldAnimationController.m */,
+				CA153F8F1F75DB000003EA74 /* CEReversibleAnimationController.h */,
+				CA153F901F75DB000003EA74 /* CEReversibleAnimationController.m */,
 				39591CE81D9B697A00427C25 /* Main.storyboard */,
 				39591CF01D9B697A00427C25 /* LaunchScreen.storyboard */,
 				39591CEB1D9B697A00427C25 /* LA_SpotLight.xcdatamodeld */,
@@ -269,6 +281,7 @@
 					39591CE01D9B697A00427C25 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 68W2B53UFP;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -343,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39591CE71D9B697A00427C25 /* LoginViewController.swift in Sources */,
+				CA153F911F75DB000003EA74 /* CEReversibleAnimationController.m in Sources */,
 				39E9FA881DA762EA003DC7D4 /* MasterMapViewController.swift in Sources */,
 				CA1AF3771F70322300B0C396 /* FilmDetailCell.swift in Sources */,
 				39591D1D1D9CDFB800427C25 /* MapViewController.swift in Sources */,
@@ -356,6 +370,7 @@
 				39591CED1D9B697A00427C25 /* LA_SpotLight.xcdatamodeld in Sources */,
 				39591CE51D9B697A00427C25 /* AppDelegate.swift in Sources */,
 				CA1AF3751F7031E100B0C396 /* FoldingCell.swift in Sources */,
+				CA153F941F75DB430003EA74 /* CEFoldAnimationController.m in Sources */,
 				39591D1F1D9E13C300427C25 /* FilmTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,11 +523,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 68W2B53UFP;
 				INFOPLIST_FILE = LA_SpotLight/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BrandonAubrey.LA-SpotLight";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LA_SpotLight-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -521,11 +539,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 68W2B53UFP;
 				INFOPLIST_FILE = LA_SpotLight/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BrandonAubrey.LA-SpotLight";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LA_SpotLight-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

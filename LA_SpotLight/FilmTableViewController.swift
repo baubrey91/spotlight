@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 enum filterMode {
     case film
     case category
@@ -22,12 +21,13 @@ class FilmTableViewController : UIViewController {
     @IBOutlet weak var segmentControl:      ScrollableSegmentControl!
    
     let kCloseCellHeight: CGFloat = 76
-    let kOpenCellHeight: CGFloat = 388
+    let kOpenCellHeight: CGFloat = 396
     
     //needs to be changed to size of filtered array
     let kRowsCount = 1000
+    let transistion = CEFoldAnimationController()
 
-    var currentMode: filterMode = .film
+    var currentMode:            filterMode = .film
     var filteredArray =         [FilmLocation]()
     var filteredCatArray =      [String]()
     var category =              false
@@ -37,7 +37,6 @@ class FilmTableViewController : UIViewController {
     //var cellHeights = (0..<1000).map { _ in C.CellHeight.close }
     
     override func viewDidLoad() {
-
         setup()
         segmentControl.segmentControlDelegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
@@ -59,7 +58,9 @@ class FilmTableViewController : UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "masterMapViewController") as! MasterMapViewController
         vc.filteredArray = filteredArray
-        self.navigationController?.pushViewController(vc, animated: true)
+        vc.transitioningDelegate = self
+        present(vc,animated: true, completion: nil)
+        //self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -129,7 +130,8 @@ extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
             var duration = 0.0
             let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
             if cellIsCollapsed {
-                cellHeights[indexPath.row] = kOpenCellHeight
+                
+                cellHeights[indexPath.row] = (filteredArray[indexPath.row].location?.latitude != nil) ? kOpenCellHeight : CGFloat(kOpenCellHeight  - 180)
                 cell.selectedAnimation(true, animated: true, completion: nil)
                 duration = 1.0
             } else {
@@ -174,3 +176,15 @@ extension FilmTableViewController: ScrollableSegmentControlDelegate {
         tableView.reloadData()
     }
 }
+
+extension FilmTableViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return transistion
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
+    }
+}
+
