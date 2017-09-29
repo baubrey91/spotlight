@@ -15,42 +15,35 @@ enum filterMode {
     case date
 }
 
-class FilmTableViewController : UIViewController {
+class FilmTableViewController: TableViewBaseViewController {
   
-    @IBOutlet weak var tableView:           UITableView!
     @IBOutlet weak var segmentControl:      ScrollableSegmentControl!
-   
-    let kCloseCellHeight: CGFloat = 76
-    let kOpenCellHeight: CGFloat = 396
-    
-    //needs to be changed to size of filtered array
-    let kRowsCount = 1000
+
     let transistion = CEFoldAnimationController()
 
     var currentMode:            filterMode = .film
-    var filteredArray =         [FilmLocation]()
+
     var filteredCatArray =      [String]()
     var category =              false
     var film =                  FilmLocation.self
-    let yearsArray =            ["2012","2013","2014","2015","2016+"]
-    var cellHeights: [CGFloat] = []
-    //var cellHeights = (0..<1000).map { _ in C.CellHeight.close }
     
     override func viewDidLoad() {
+        
+        Client.sharedInstance.callAPI(endPoint: .getFilms()) {
+            json in DispatchQueue.main.async {
+                self.filmLocations = FilmLocation.filmLocations(array: json as! [payload])
+                self.filmLocations.sort(by: { $0.production! < $1.production! })
+                self.filteredArray = self.filmLocations
+                self.filteredCatArray = categoryArray
+                //self.tableView.reloadData()
+            }
+        }
+        
         setup()
         segmentControl.segmentControlDelegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
-        locationsArray.sort(by: {$0.production! < $1.production! })
-        categoryArray.sort(by: {$0 < $1 })
-        filteredArray = locationsArray
-        filteredCatArray = categoryArray
-    }
-    
-    private func setup() {
-        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
-        tableView.estimatedRowHeight = kCloseCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-        //tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
+        //categorySet.sort({$0 < $1 })
+        filteredArray = filmLocations
     }
     
     @IBAction func mapButton(_ sender: AnyObject) {
@@ -60,13 +53,12 @@ class FilmTableViewController : UIViewController {
         vc.filteredArray = filteredArray
         vc.transitioningDelegate = self
         present(vc,animated: true, completion: nil)
-        //self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension FilmTableViewController {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         switch currentMode {
         case .film:
@@ -78,13 +70,11 @@ extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard case let cell as FoldingCell = cell else {
             return
         }
-        
-        cell.backgroundColor = .clear
-        
+                
         if cellHeights[indexPath.row] == kCloseCellHeight {
             cell.selectedAnimation(false, animated: false, completion:nil)
         } else {
@@ -92,7 +82,7 @@ extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch currentMode {
         case .film:
             let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FilmDetailCell
@@ -112,14 +102,11 @@ extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if currentMode == .film {
-            return cellHeights[indexPath.row]
-        }
-        return 50
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return currentMode == .film ? cellHeights[indexPath.row] : 50
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch currentMode {
         case .film:
             let cell = tableView.cellForRow(at: indexPath) as! FilmDetailCell
@@ -131,7 +118,7 @@ extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
             let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
             if cellIsCollapsed {
                 
-                cellHeights[indexPath.row] = (filteredArray[indexPath.row].location?.latitude != nil) ? kOpenCellHeight : CGFloat(kOpenCellHeight  - 180)
+                cellHeights[indexPath.row] = kOpenCellHeight
                 cell.selectedAnimation(true, animated: true, completion: nil)
                 duration = 1.0
             } else {
@@ -149,6 +136,7 @@ extension FilmTableViewController: UITableViewDelegate, UITableViewDataSource {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "filteredTableViewController") as! FilteredTableViewController
             vc.categoryString = categoryArray[indexPath.row]
+            vc.filmLocations = self.filmLocations
             self.navigationController?.pushViewController(vc, animated: true)
         case .date:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -180,11 +168,13 @@ extension FilmTableViewController: ScrollableSegmentControlDelegate {
 extension FilmTableViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transistion.reverse = false
         return transistion
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
+        transistion.reverse = true
+        return transistion
     }
 }
 

@@ -8,8 +8,6 @@
 
 import UIKit
 
-var locationsArray = [FilmLocation]()
-var categoryArray = [String]()
 
 class LoginViewController: UIViewController {
 
@@ -57,7 +55,7 @@ class LoginViewController: UIViewController {
                         let jsonDict = json
                         for obj in jsonDict{
                             let fl = FilmLocation(json: obj)
-                            locationsArray.append(fl!)
+                            //®locationsArray.append(fl)
                             categorySet.add(obj["category"]!)
                         }
                         categoryArray = (categorySet.allObjects as NSArray) as! [String]
@@ -79,5 +77,3 @@ class LoginViewController: UIViewController {
         task.resume()
     }
 }
-
-

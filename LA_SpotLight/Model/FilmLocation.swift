@@ -9,9 +9,7 @@
 import UIKit
 import MapKit
 
-let df = DateFormatter()
-
-struct FilmLocation {
+class FilmLocation {
     
     var category: String
     var date: NSDate?
@@ -20,10 +18,8 @@ struct FilmLocation {
     var permitNumber : String?
     var production : String?
     var productionCompany : String?
-
-}
-extension FilmLocation{
-    init?(json: [String: Any]) {
+    
+    init (json: payload) {
         df.dateFormat = "yyyy-MM-dd"
 
         /*guard let location = json["location_address"] as? String
@@ -48,6 +44,19 @@ extension FilmLocation{
         self.permitNumber = (json["permit_no"] as? String)
         self.production = (json["production"] as? String)
         self.productionCompany = (json["production_company"] as? String)
+    }
+    
+    class func filmLocations(array: [payload]) -> [FilmLocation] {
+        var filmLocations = [FilmLocation]()
+        let categorySet = NSMutableSet()
+        for jsonDic in array {
+            let fl = FilmLocation(json: jsonDic)
+            filmLocations.append(fl)
+            categorySet.add(jsonDic["category"]!)
+        }
+        categoryArray = Array(categorySet) as! [String]
+        categoryArray.sort(by: { $0 < $1 })
+        return filmLocations
     }
 }
 
