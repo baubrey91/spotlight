@@ -17,19 +17,26 @@ enum filterMode {
 
 class FilmTableViewController: TableViewBaseViewController {
   
+    //----------------------//
+    //MARK:- VARIABLES
+    //----------------------//
+    
     @IBOutlet weak var segmentControl:      ScrollableSegmentControl!
-
-    let transistion = CEFoldAnimationController()
-
+    
+    let transistion =           CEFoldAnimationController()
+    var searchBar:              UISearchBar!
     var currentMode:            filterMode = .film
-
     var filteredCatArray =      [String]()
     var category =              false
     var film =                  FilmLocation.self
+   
+    //----------------------//
+    //MARK:- VIEW LIFE CYCLE
+    //----------------------//
     
     override func viewDidLoad() {
         
-        Client.sharedInstance.callAPI(endPoint: .getFilms()) {
+        Client.sharedInstance.callAPI(endPoint: .getFilms()) { [unowned self]
             json in DispatchQueue.main.async {
                 self.filmLocations = FilmLocation.filmLocations(array: json as! [payload])
                 self.filmLocations.sort(by: { $0.production! < $1.production! })
@@ -41,20 +48,36 @@ class FilmTableViewController: TableViewBaseViewController {
         
         setup()
         segmentControl.segmentControlDelegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cells.filmCell)
         //categorySet.sort({$0 < $1 })
         filteredArray = filmLocations
+        
+        // Initialize the UISearchBar
+        searchBar = UISearchBar()
+        searchBar.delegate = self
+        
+        // Add SearchBar to the NavigationBar
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
     }
     
+    //----------------------//
+    //MARK:- IBACTIONS
+    //----------------------//
+
     @IBAction func mapButton(_ sender: AnyObject) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "masterMapViewController") as! MasterMapViewController
+        let storyboard = UIStoryboard(name: storyboards.main, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: storyboards.map) as! MasterMapViewController
         vc.filteredArray = filteredArray
         vc.transitioningDelegate = self
         present(vc,animated: true, completion: nil)
     }
 }
+ 
+    //----------------------//
+    //MARK:- TableView
+    //----------------------//
 
 extension FilmTableViewController {
     
@@ -85,18 +108,18 @@ extension FilmTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch currentMode {
         case .film:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FilmDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cells.foldingCell, for: indexPath) as! FilmDetailCell
             let durations: [TimeInterval] = [0.26, 0.2, 0.2]
             cell.durationsForExpandedState = durations
             cell.durationsForCollapsedState = durations
             cell.film = filteredArray[indexPath.row]
             return cell
         case .category:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cells.filmCell, for: indexPath) as UITableViewCell
             cell.textLabel?.text = filteredCatArray[indexPath.row]
             return cell
         case .date:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cells.filmCell, for: indexPath) as UITableViewCell
             cell.textLabel?.text = yearsArray[indexPath.row]
             return cell
         }
@@ -107,6 +130,8 @@ extension FilmTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: storyboards.main, bundle: nil)
+        
         switch currentMode {
         case .film:
             let cell = tableView.cellForRow(at: indexPath) as! FilmDetailCell
@@ -119,11 +144,11 @@ extension FilmTableViewController {
             if cellIsCollapsed {
                 
                 cellHeights[indexPath.row] = kOpenCellHeight
-                cell.selectedAnimation(true, animated: true, completion: nil)
+                cell.unfold(true)
                 duration = 1.0
             } else {
                 cellHeights[indexPath.row] = kCloseCellHeight
-                cell.selectedAnimation(false, animated: true, completion: nil)
+                cell.unfold(false)
                 duration = 1.2
             }
             
@@ -133,37 +158,48 @@ extension FilmTableViewController {
             }, completion: nil)
             
         case .category:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "filteredTableViewController") as! FilteredTableViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: storyboards.filteredTBC) as! FilteredTableViewController
             vc.categoryString = categoryArray[indexPath.row]
             vc.filmLocations = self.filmLocations
             self.navigationController?.pushViewController(vc, animated: true)
+            
         case .date:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "filteredDatesTableViewController") as! FilteredDatesTableViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: storyboards.filteredDatesTBC) as! FilteredDatesTableViewController
             if indexPath.row == 4 {
                 vc.year = 2016
             } else {
                 vc.year = Int(yearsArray[indexPath.row])!
             }
+            vc.filmLocations = filmLocations
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
 
+    //----------------------//
+    //MARK:- SegmentController
+    //----------------------//
+
 extension FilmTableViewController: ScrollableSegmentControlDelegate {
     func segmentControl(_ segmentControl: ScrollableSegmentControl, didSelectIndex index: Int) {
         switch index {
         case 0:
+            searchBar.isHidden = false
             currentMode = .film
         case 1:
+            searchBar.isHidden = false
             currentMode = .category
         default:
+            searchBar.isHidden = true
             currentMode = .date
         }
         tableView.reloadData()
     }
 }
+
+    //----------------------//
+    //MARK:- Transition
+    //----------------------//
 
 extension FilmTableViewController: UIViewControllerTransitioningDelegate {
     
@@ -178,3 +214,43 @@ extension FilmTableViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
+    //----------------------//
+    //MARK:- SearchBar
+    //----------------------//
+
+extension FilmTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        switch currentMode {
+        case .film:
+            
+            filteredArray.removeAll()
+            if searchText.characters.count > 0 {
+                filteredArray = filmLocations.filter {
+                    ($0.production?.contains(searchText))!
+                }
+            }
+            else {
+                filteredArray.append(contentsOf: filmLocations)
+            }
+        case .category:
+            
+            filteredCatArray.removeAll()
+            if searchText.characters.count > 0 {
+                filteredCatArray = categoryArray.filter {
+                    ($0.contains(searchText))
+                }
+            }
+            else {
+                filteredCatArray.append(contentsOf: categoryArray)
+            }
+        case .date:
+            break
+        }
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        searchBar.resignFirstResponder()
+    } 
+}

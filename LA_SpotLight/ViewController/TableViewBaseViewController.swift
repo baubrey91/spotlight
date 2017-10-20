@@ -36,7 +36,6 @@ class TableViewBaseViewController: UIViewController {
 extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return filteredArray.count
     }
     
@@ -56,7 +55,7 @@ extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FilmDetailCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cells.foldingCell, for: indexPath) as! FilmDetailCell
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations

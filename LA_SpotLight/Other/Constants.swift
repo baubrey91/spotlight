@@ -14,4 +14,14 @@ var categoryArray = [String]()
 let yearsArray =  ["2012","2013","2014","2015","2016+"]
 let df = DateFormatter()
 
+struct storyboards {
+    static let main = "Main"
+    static let filteredTBC = "filteredTableViewController"
+    static let filteredDatesTBC = "filteredDatesTableViewController"
+    static let map = "masterMapViewController"
+}
 
+struct cells {
+    static let foldingCell = "FoldingCell"
+    static let filmCell = "filmCell"
+}

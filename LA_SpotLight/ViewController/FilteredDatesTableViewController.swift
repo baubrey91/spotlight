@@ -11,14 +11,14 @@ import UIKit
 
 class FilteredDatesTableViewController: TableViewBaseViewController {
     
-    var dateArray =         [FilmLocation]()
-    var filteredDateArray = [FilmLocation]()
+    //var dateArray =         [FilmLocation]()
+    //var filteredDateArray = [FilmLocation]()
     var year =              0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dateArray = filmLocations
+        setup()
+        //dateArray = filmLocations
         var startString:    String
         var endString:      String
         switch year{
@@ -34,15 +34,15 @@ class FilteredDatesTableViewController: TableViewBaseViewController {
         let startDate =     df.date(from: startString)
         let endDate =       df.date(from: endString)
         
-        for film in dateArray {
+        for film in filmLocations {
             if let fd =  film.date {
                 if (fd.isGreaterThanDate(dateToCompare: startDate!)) && (fd.isLessThanDate(dateToCompare: endDate!)){
-                    filteredDateArray.append(film)
+                    filteredArray.append(film)
                 }
             }
         }
         
-        filteredDateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
+        filteredArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
     }
 }

@@ -25,6 +25,7 @@ class FilteredTableViewController: TableViewBaseViewController {
         filteredArray = filmLocations.filter {
             $0.category.contains(categoryString)
         }
+        
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
         filmLocations.sort(by: {$0.production! < $1.production! })
         dateArray = filmLocations
@@ -41,7 +42,7 @@ class FilteredTableViewController: TableViewBaseViewController {
     }
 }
 
-extension FilteredTableViewController:  UISearchBarDelegate {
+extension FilteredTableViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredArray.removeAll()
