@@ -18,6 +18,7 @@ class ScrollableSegmentControl: UIScrollView {
     
     var segmentTitles: [String] = ["Film", "Category", "Date"] {
         didSet {
+            
             // Setup the "items"
             segmentControl.items = segmentTitles
             // Update the segment button frame
@@ -43,10 +44,10 @@ class ScrollableSegmentControl: UIScrollView {
     
     func initSegmentControl() {
         // Setup custom page control
-        let estimatedWidthUnit = Int(self.frame.width / 3) //150
+        let estimatedWidthUnit = 150
         let newWidth = estimatedWidthUnit * segmentTitles.count
-        segmentControl.frame = CGRect(x: 0, y: 0, width: CGFloat(newWidth), height: frame.height)
         
+        segmentControl.frame = CGRect(x: 0, y: 0, width: CGFloat(newWidth), height: frame.height)
         segmentControl.items = segmentTitles
         segmentControl.backColor = .white
         segmentControl.cornerRadius = 0

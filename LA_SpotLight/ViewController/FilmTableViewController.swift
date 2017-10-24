@@ -15,6 +15,10 @@ enum filterMode {
     case date
 }
 
+protocol transistionDelegate {
+    func transitionToMapview(film: FilmLocation)
+}
+
 class FilmTableViewController: TableViewBaseViewController {
   
     //----------------------//
@@ -24,6 +28,8 @@ class FilmTableViewController: TableViewBaseViewController {
     @IBOutlet weak var segmentControl:      ScrollableSegmentControl!
     
     let transistion =           CEFoldAnimationController()
+    let currentStoryboard =                    UIStoryboard(name: cStoryboards.main, bundle: nil)
+
     var searchBar:              UISearchBar!
     var currentMode:            filterMode = .film
     var filteredCatArray =      [String]()
@@ -48,7 +54,7 @@ class FilmTableViewController: TableViewBaseViewController {
         
         setup()
         segmentControl.segmentControlDelegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cells.filmCell)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cCells.filmCell)
         //categorySet.sort({$0 < $1 })
         filteredArray = filmLocations
         
@@ -67,9 +73,18 @@ class FilmTableViewController: TableViewBaseViewController {
 
     @IBAction func mapButton(_ sender: AnyObject) {
         
-        let storyboard = UIStoryboard(name: storyboards.main, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: storyboards.map) as! MasterMapViewController
-        vc.filteredArray = filteredArray
+
+    }
+}
+ 
+    //----------------------//
+    //MARK:- Transistion Delegate
+    //----------------------//
+extension FilmTableViewController: transistionDelegate {
+    func transitionToMapview(film: FilmLocation) {
+        
+        let vc = currentStoryboard.instantiateViewController(withIdentifier: cStoryboards.map) as! MasterMapViewController
+        vc.film = film
         vc.transitioningDelegate = self
         present(vc,animated: true, completion: nil)
     }
@@ -108,18 +123,19 @@ extension FilmTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch currentMode {
         case .film:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cells.foldingCell, for: indexPath) as! FilmDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cCells.foldingCell, for: indexPath) as! FilmDetailCell
             let durations: [TimeInterval] = [0.26, 0.2, 0.2]
             cell.durationsForExpandedState = durations
             cell.durationsForCollapsedState = durations
             cell.film = filteredArray[indexPath.row]
+            cell.delegate = self
             return cell
         case .category:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cells.filmCell, for: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cCells.filmCell, for: indexPath) as UITableViewCell
             cell.textLabel?.text = filteredCatArray[indexPath.row]
             return cell
         case .date:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cells.filmCell, for: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cCells.filmCell, for: indexPath) as UITableViewCell
             cell.textLabel?.text = yearsArray[indexPath.row]
             return cell
         }
@@ -130,7 +146,6 @@ extension FilmTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: storyboards.main, bundle: nil)
         
         switch currentMode {
         case .film:
@@ -145,7 +160,7 @@ extension FilmTableViewController {
                 
                 cellHeights[indexPath.row] = kOpenCellHeight
                 cell.unfold(true)
-                duration = 1.0
+                duration = 0.6
             } else {
                 cellHeights[indexPath.row] = kCloseCellHeight
                 cell.unfold(false)
@@ -158,13 +173,13 @@ extension FilmTableViewController {
             }, completion: nil)
             
         case .category:
-            let vc = storyboard.instantiateViewController(withIdentifier: storyboards.filteredTBC) as! FilteredTableViewController
+            let vc = currentStoryboard.instantiateViewController(withIdentifier: cStoryboards.filteredTBC) as! FilteredTableViewController
             vc.categoryString = categoryArray[indexPath.row]
             vc.filmLocations = self.filmLocations
             self.navigationController?.pushViewController(vc, animated: true)
             
         case .date:
-            let vc = storyboard.instantiateViewController(withIdentifier: storyboards.filteredDatesTBC) as! FilteredDatesTableViewController
+            let vc = currentStoryboard.instantiateViewController(withIdentifier: cStoryboards.filteredDatesTBC) as! FilteredDatesTableViewController
             if indexPath.row == 4 {
                 vc.year = 2016
             } else {

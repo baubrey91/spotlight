@@ -11,21 +11,20 @@ import UIKit
 @IBDesignable class CustomSegmentedControl: UIControl{
     
     // MARK: - Properties
-    
     private var labels = [UILabel]()
-    
     private var selectedLabelView = UIView()
     private var bottomBorderLayer = CALayer()
     
-    
-    
     // Edit/add/remove labels
-    var items : [String] = ["Item 1", "Item 2"] { didSet { setupLabels() } }
+    var items : [String] = ["Item 1", "Item 2"] {
+        didSet {
+            setupLabels()
+        }
+    }
     
     var selectedIndex : Int = 0 { didSet { displaySelectedLabel() }}
     
     // Mark: Editable Properties
-    
     @IBInspectable var backColor: UIColor = UIColor.black {
         didSet {
             self.backgroundColor = backColor
@@ -109,16 +108,13 @@ import UIKit
         didSet{
             selectedLabelView.layer.borderWidth = selectedLabelBorderWidth
         }
-        
     }
     
     @IBInspectable var selectedLabelBorderColor: UIColor = UIColor.clear {
         didSet{
             selectedLabelView.layer.borderColor = selectedLabelBorderColor.cgColor
         }
-        
     }
-    
     
     // MARK: - Initializer
     
@@ -146,7 +142,6 @@ import UIKit
             let xPosition = CGFloat(index) * labelWidth
             label.frame = CGRect(x: xPosition, y: 0, width: labelWidth, height: labelHeight)
         }
-        
     }
     
     // MARK: - Setup
@@ -155,7 +150,6 @@ import UIKit
         setupLabels()
         insertSubview(selectedLabelView, at: 0)
     }
-    
     
     func setupLabels(){
         for label in labels {
@@ -188,7 +182,6 @@ import UIKit
     }
     
     // Mark: - Touch Gestures
-    
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let location = touch.location(in: self)
         var calculatedIndex: Int?
@@ -205,7 +198,6 @@ import UIKit
             selectedIndex = calculatedIndex!
             sendActions(for: .valueChanged)
         }
-        
         return false
     }
 }

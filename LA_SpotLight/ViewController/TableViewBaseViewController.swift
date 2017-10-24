@@ -19,8 +19,9 @@ class TableViewBaseViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    
     let kCloseCellHeight: CGFloat = 76
-    let kOpenCellHeight: CGFloat = 396
+    let kOpenCellHeight: CGFloat = 263
     var cellHeights: [CGFloat] = []
     
     //needs to be changed to size of filtered array
@@ -55,8 +56,8 @@ extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cells.foldingCell, for: indexPath) as! FilmDetailCell
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cCells.foldingCell, for: indexPath) as! FilmDetailCell
+        let durations: [TimeInterval] = [0.26, 0.2, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations
         cell.film = filteredArray[indexPath.row]

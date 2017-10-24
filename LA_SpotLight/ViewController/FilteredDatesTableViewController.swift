@@ -11,9 +11,17 @@ import UIKit
 
 class FilteredDatesTableViewController: TableViewBaseViewController {
     
+    //----------------//
+    //MARK:- Variables
+    //----------------//
+    
     //var dateArray =         [FilmLocation]()
     //var filteredDateArray = [FilmLocation]()
     var year =              0
+    
+    //----------------//
+    //MARK:- View Life Cycle
+    //----------------//
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +31,12 @@ class FilteredDatesTableViewController: TableViewBaseViewController {
         var endString:      String
         switch year{
         case 2016 :
-            startString =   "\(year)-01-01"
-            endString =     "\(year+10)-01-01"
+            startString =   "\(year)" + cDate.janFirst
+            endString =     "\(year+10)" + cDate.janFirst
             
         default :
-            startString =   "\(year)-01-01"
-            endString =     "\(year+1)-01-01"
+            startString =   "\(year)" + cDate.janFirst
+            endString =     "\(year+1)" + cDate.janFirst
         }
         
         let startDate =     df.date(from: startString)

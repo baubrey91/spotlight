@@ -14,14 +14,23 @@ var categoryArray = [String]()
 let yearsArray =  ["2012","2013","2014","2015","2016+"]
 let df = DateFormatter()
 
-struct storyboards {
+struct cStoryboards {
     static let main = "Main"
     static let filteredTBC = "filteredTableViewController"
     static let filteredDatesTBC = "filteredDatesTableViewController"
     static let map = "masterMapViewController"
 }
 
-struct cells {
+struct cCells {
     static let foldingCell = "FoldingCell"
     static let filmCell = "filmCell"
+}
+
+struct cFilmLocation {
+    static let category = "category"
+    //static let filmCell = "filmCell"
+}
+
+struct cDate {
+    static let janFirst = "-01-01"
 }

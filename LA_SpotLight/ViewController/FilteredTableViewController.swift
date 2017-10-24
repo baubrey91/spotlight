@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 class FilteredTableViewController: TableViewBaseViewController {
+
+    //----------------//
+    //MARK:- Variables
+    //----------------//
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -18,29 +22,32 @@ class FilteredTableViewController: TableViewBaseViewController {
     var category = false
     var film = FilmLocation.self
 
+    //----------------//
+    //MARK:- View Life Cycle
+    //----------------//
+    
     override func viewDidLoad() {
         
         self.title = categoryString
         setup()
-        filteredArray = filmLocations.filter {
-            $0.category.contains(categoryString)
-        }
+        filteredArray = filmLocations.filter { $0.category.contains(categoryString) }
         
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "filmCell")
         filmLocations.sort(by: {$0.production! < $1.production! })
         dateArray = filmLocations
         categoryArray.sort(by: {$0 < $1 })
-        dateArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
+        dateArray.sort(by: {$0.date?.compare($1.date! as Date) == ComparisonResult.orderedAscending })
         searchBar.returnKeyType = UIReturnKeyType.done
         searchBar.enablesReturnKeyAutomatically = false
-        
-        //cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredArray.count
     }
 }
+
+    //----------------//
+    //MARK:- SearchBar
+    //----------------//
 
 extension FilteredTableViewController: UISearchBarDelegate {
     

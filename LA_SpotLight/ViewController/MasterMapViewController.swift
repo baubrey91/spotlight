@@ -11,23 +11,29 @@ import MapKit
 import UIKit
 
 class MasterMapViewController: UIViewController {
-    var filteredArray = [FilmLocation]()
+    
+    //-----------------------//
+    //MARK:- View Life Cycle
+    //-----------------------// 
+    
+    var film: FilmLocation!
     fileprivate var pins = [Pin]()
     fileprivate let initialLocation = CLLocation(latitude: 34.0522, longitude: -118.2437)
     fileprivate let regionRadius: CLLocationDistance = 20000
     
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+   
+    //-----------------------//
+    //MARK:- View Life Cycle
+    //-----------------------//
     
     override func viewDidLoad() {
-        for location in filteredArray{
-            if location.location != nil {
-                let p = Pin(title: location.production!, coordinate: location.location!)
-                pins.append(p)
-            }
+        if film.location != nil {
+            let pin = Pin(title: film.production!, coordinate: film.location!)
+            mapView.addAnnotation(pin)
         }
         configureButton()
-        mapView.addAnnotations(pins)
         centerMapOnLocation(location: initialLocation)
     }
     

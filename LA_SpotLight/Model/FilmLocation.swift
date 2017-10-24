@@ -28,7 +28,7 @@ class FilmLocation {
         }
          //return nothing if there is no address!
          */
-        self.category = json["category"] as! String? ?? "unknown"
+        self.category = json[cFilmLocation.category] as! String? ?? "unknown"
         if let date = json["date"] as? String{
             let formattedDate = date.stripTime()
             let dfFormattedDate = df.date(from: formattedDate)
@@ -52,7 +52,7 @@ class FilmLocation {
         for jsonDic in array {
             let fl = FilmLocation(json: jsonDic)
             filmLocations.append(fl)
-            categorySet.add(jsonDic["category"]!)
+            categorySet.add(jsonDic[cFilmLocation.category]!)
         }
         categoryArray = Array(categorySet) as! [String]
         categoryArray.sort(by: { $0 < $1 })
