@@ -27,6 +27,7 @@
 		CA1AF3791F70658F00B0C396 /* ScrollableSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF3781F70658F00B0C396 /* ScrollableSegmentController.swift */; };
 		CA1AF37B1F7065D400B0C396 /* CustomSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF37A1F7065D400B0C396 /* CustomSegmentController.swift */; };
 		CA1AF39F1F71C77700B0C396 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF39E1F71C77700B0C396 /* Gradient.swift */; };
+		CA243E101FA124E100AE2A43 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA243E0F1FA124E100AE2A43 /* Utils.swift */; };
 		CA74E7091F796E28004CF945 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74E7081F796E28004CF945 /* Client.swift */; };
 		CA74E70B1F797213004CF945 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74E70A1F797213004CF945 /* Reachability.swift */; };
 		CA74E70E1F7976B1004CF945 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74E70D1F7976B1004CF945 /* Constants.swift */; };
@@ -80,6 +81,7 @@
 		CA1AF3781F70658F00B0C396 /* ScrollableSegmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentController.swift; sourceTree = "<group>"; };
 		CA1AF37A1F7065D400B0C396 /* CustomSegmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentController.swift; sourceTree = "<group>"; };
 		CA1AF39E1F71C77700B0C396 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
+		CA243E0F1FA124E100AE2A43 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CA74E7081F796E28004CF945 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		CA74E70A1F797213004CF945 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		CA74E70D1F7976B1004CF945 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -233,8 +235,9 @@
 		CA74E70C1F79769E004CF945 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				CA74E70D1F7976B1004CF945 /* Constants.swift */,
 				39591CE41D9B697A00427C25 /* AppDelegate.swift */,
+				CA74E70D1F7976B1004CF945 /* Constants.swift */,
+				CA243E0F1FA124E100AE2A43 /* Utils.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				CA1AF3751F7031E100B0C396 /* FoldingCell.swift in Sources */,
 				CA153F941F75DB430003EA74 /* CEFoldAnimationController.m in Sources */,
 				39591D1F1D9E13C300427C25 /* FilmTableViewController.swift in Sources */,
+				CA243E101FA124E100AE2A43 /* Utils.swift in Sources */,
 				CA7A10AF1F7DBCB5007ED992 /* TableViewBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

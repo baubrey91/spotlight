@@ -10,6 +10,9 @@ import XCTest
 @testable import LA_SpotLight
 
 class LA_SpotLightTests: XCTestCase {
+    let dateOne = NSDate(timeIntervalSince1970: 10001)
+    let dateTwo = NSDate(timeIntervalSince1970: 10000)
+    var sessionUnderTest: URLSession!
     
     override func setUp() {
         super.setUp()
@@ -19,5 +22,16 @@ class LA_SpotLightTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testGreaterDateExtension() {
+
+        let result = dateOne.isGreaterThanDate(dateToCompare: dateTwo as Date)
+        XCTAssert(result)
+    }
+    
+    func testLessThanDateExtension() {
+        let result = dateTwo.isLessThanDate(dateToCompare: dateOne as Date)
+        XCTAssert(result)
     }
 }

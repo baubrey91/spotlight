@@ -32,13 +32,13 @@ class Client {
         if let url = URL(string: endPoint.url) {
             let task = session.dataTask(with: url,
                                         completionHandler: { data, response, error -> Void in
-                                            if error != nil {
-                                                print(error ?? "Unknown error")
+                                            if let error = error {
+                                                print(error)
                                             }
                                             else if let data = data {
                                                 let jsonData = (try? JSONSerialization.jsonObject(with: data,
                                                                                                   options: JSONSerialization.ReadingOptions.allowFragments)) as? [payload]
-                                                completionHandler(jsonData ?? nil)
+                                                completionHandler(jsonData ?? [payload]())
                                             }
                                             self.session.invalidateAndCancel()
             })

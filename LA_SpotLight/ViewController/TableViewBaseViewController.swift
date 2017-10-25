@@ -11,6 +11,10 @@ import UIKit
 
 class TableViewBaseViewController: UIViewController {
     
+    //---------------//
+    //MARK:- Variables
+    //---------------//
+    
     @IBOutlet weak var tableView: UITableView!
 
     var filmLocations = [FilmLocation]()
@@ -34,6 +38,10 @@ class TableViewBaseViewController: UIViewController {
     }
 }
 
+ 
+    //---------------//
+    //MARK:- Table View 
+    //---------------//
 extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,9 +56,9 @@ extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSourc
         cell.backgroundColor = .clear
         
         if cellHeights[indexPath.row] == kCloseCellHeight {
-            cell.selectedAnimation(false, animated: false, completion:nil)
+            cell.unfold(false)
         } else {
-            cell.selectedAnimation(true, animated: false, completion: nil)
+            cell.unfold(true)
         }
     }
     
@@ -80,11 +88,11 @@ extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSourc
         if cellIsCollapsed {
             
             cellHeights[indexPath.row] = kOpenCellHeight
-            cell.selectedAnimation(true, animated: true, completion: nil)
+            cell.unfold(true)
             duration = 1.0
         } else {
             cellHeights[indexPath.row] = kCloseCellHeight
-            cell.selectedAnimation(false, animated: true, completion: nil)
+            cell.unfold(false)
             duration = 1.2
         }
         

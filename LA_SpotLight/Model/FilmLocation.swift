@@ -20,7 +20,7 @@ class FilmLocation {
     var productionCompany : String?
     
     init (json: payload) {
-        df.dateFormat = "yyyy-MM-dd"
+        df.dateFormat = cDate.dateFormat
 
         /*guard let location = json["location_address"] as? String
         else {
@@ -28,22 +28,22 @@ class FilmLocation {
         }
          //return nothing if there is no address!
          */
-        self.category = json[cFilmLocation.category] as! String? ?? "unknown"
-        if let date = json["date"] as? String{
+        self.category = json[cFilmLocation.category] as! String? ?? cFilmLocation.unknown
+        if let date = json[cFilmLocation.date] as? String{
             let formattedDate = date.stripTime()
             let dfFormattedDate = df.date(from: formattedDate)
             if let formDate = dfFormattedDate { self.date = formDate as NSDate? }
         }
         
-        let coordinatesJSON = json["location"] as? [String:Any]
-        if let cordinateArr = coordinatesJSON?["coordinates"] as? [Double]{
+        let coordinatesJSON = json[cFilmLocation.coordinates] as? [String:Any]
+        if let cordinateArr = coordinatesJSON?[cFilmLocation.coordinates] as? [Double]{
             self.location = CLLocationCoordinate2D(latitude:(cordinateArr[1]), longitude: (cordinateArr[0])) //((cordinateArr[1]), (cordinateArr[0]))
         }
         
-        self.locationAddress = json["location_address"] as! String? ?? "unknown"
-        self.permitNumber = (json["permit_no"] as? String)
-        self.production = (json["production"] as? String)
-        self.productionCompany = (json["production_company"] as? String)
+        self.locationAddress = json[cFilmLocation.locationAddress] as? String ?? cFilmLocation.unknown
+        self.permitNumber = (json[cFilmLocation.permitNumber] as? String)
+        self.production = (json[cFilmLocation.production] as? String)
+        self.productionCompany = (json[cFilmLocation.productionCompany] as? String)
     }
     
     class func filmLocations(array: [payload]) -> [FilmLocation] {
@@ -57,11 +57,5 @@ class FilmLocation {
         categoryArray = Array(categorySet) as! [String]
         categoryArray.sort(by: { $0 < $1 })
         return filmLocations
-    }
-}
-
-extension String {
-    func stripTime() -> String{
-        return self[(self.startIndex)..<(self.index((self.startIndex), offsetBy: 10))]
     }
 }

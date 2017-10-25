@@ -25,16 +25,16 @@ class FilmTableViewController: TableViewBaseViewController {
     //MARK:- VARIABLES
     //----------------------//
     
-    @IBOutlet weak var segmentControl:      ScrollableSegmentControl!
+    @IBOutlet weak var segmentControl: ScrollableSegmentControl!
     
-    let transistion =           CEFoldAnimationController()
-    let currentStoryboard =                    UIStoryboard(name: cStoryboards.main, bundle: nil)
+    let transistion =                  CEFoldAnimationController()
+    let currentStoryboard =            UIStoryboard(name: cStoryboards.main, bundle: nil)
 
-    var searchBar:              UISearchBar!
-    var currentMode:            filterMode = .film
-    var filteredCatArray =      [String]()
-    var category =              false
-    var film =                  FilmLocation.self
+    fileprivate var searchBar:         UISearchBar!
+    fileprivate var currentMode:       filterMode = .film
+    fileprivate var filteredCatArray = [String]()
+    private var category =             false
+    private var film =                 FilmLocation.self
    
     //----------------------//
     //MARK:- VIEW LIFE CYCLE
@@ -42,22 +42,30 @@ class FilmTableViewController: TableViewBaseViewController {
     
     override func viewDidLoad() {
         
+        callAPI()
+        setup()
+        setupSearchBar()
+        segmentControl.segmentControlDelegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cCells.filmCell)
+        filteredArray = filmLocations
+    }
+   
+    //----------------------//
+    //MARK:- FUNCTIONS
+    //----------------------//
+    
+    private func callAPI() {
         Client.sharedInstance.callAPI(endPoint: .getFilms()) { [unowned self]
             json in DispatchQueue.main.async {
                 self.filmLocations = FilmLocation.filmLocations(array: json as! [payload])
                 self.filmLocations.sort(by: { $0.production! < $1.production! })
                 self.filteredArray = self.filmLocations
                 self.filteredCatArray = categoryArray
-                //self.tableView.reloadData()
             }
         }
-        
-        setup()
-        segmentControl.segmentControlDelegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cCells.filmCell)
-        //categorySet.sort({$0 < $1 })
-        filteredArray = filmLocations
-        
+    }
+    
+    private func setupSearchBar () {
         // Initialize the UISearchBar
         searchBar = UISearchBar()
         searchBar.delegate = self
@@ -80,6 +88,7 @@ class FilmTableViewController: TableViewBaseViewController {
     //----------------------//
     //MARK:- Transistion Delegate
     //----------------------//
+
 extension FilmTableViewController: transistionDelegate {
     func transitionToMapview(film: FilmLocation) {
         
@@ -114,9 +123,9 @@ extension FilmTableViewController {
         }
                 
         if cellHeights[indexPath.row] == kCloseCellHeight {
-            cell.selectedAnimation(false, animated: false, completion:nil)
+            cell.unfold(false)
         } else {
-            cell.selectedAnimation(true, animated: false, completion: nil)
+            cell.unfold(true)
         }
     }
     
@@ -146,7 +155,6 @@ extension FilmTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         switch currentMode {
         case .film:
             let cell = tableView.cellForRow(at: indexPath) as! FilmDetailCell

@@ -15,9 +15,7 @@ class FilteredDatesTableViewController: TableViewBaseViewController {
     //MARK:- Variables
     //----------------//
     
-    //var dateArray =         [FilmLocation]()
-    //var filteredDateArray = [FilmLocation]()
-    var year =              0
+    var year: Int?
     
     //----------------//
     //MARK:- View Life Cycle
@@ -26,10 +24,17 @@ class FilteredDatesTableViewController: TableViewBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        //dateArray = filmLocations
+        if let year = year {
+            setUpDateArray(year: year)
+        }
+        
+        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
+    }
+    
+    private func setUpDateArray(year: Int) {
         var startString:    String
         var endString:      String
-        switch year{
+        switch year {
         case 2016 :
             startString =   "\(year)" + cDate.janFirst
             endString =     "\(year+10)" + cDate.janFirst
@@ -49,27 +54,7 @@ class FilteredDatesTableViewController: TableViewBaseViewController {
                 }
             }
         }
-        
-        filteredArray.sort(by: {$0.date?.compare($1.date as! Date) == ComparisonResult.orderedAscending })
-        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
+        filteredArray.sort(by: {$0.date?.compare($1.date! as Date) == ComparisonResult.orderedAscending })
     }
 }
 
-extension NSDate {
-    func isGreaterThanDate(dateToCompare: Date) -> Bool {
-        
-        var isGreater = false
-        if self.compare(dateToCompare) == ComparisonResult.orderedDescending {
-            isGreater = true
-        }
-        return isGreater
-    }
-    
-    func isLessThanDate(dateToCompare: Date) -> Bool {
-        var isLess = false
-        if self.compare(dateToCompare) == ComparisonResult.orderedAscending {
-            isLess = true
-        }
-        return isLess
-    }
-}

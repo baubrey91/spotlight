@@ -27,7 +27,9 @@ class FilmDetailCell: FoldingCell {
             self.detailFilmLabel.text = film?.production
             self.addressLabel.text = film?.locationAddress
             self.permitLabel.text = film?.permitNumber
-            self.dateLabel.text = String(describing: (film?.date!)!).stripTime()
+            if let date = film?.date {
+                self.dateLabel.text = String(describing: date).stripTime()
+            }
             self.companyLabel.text = film?.productionCompany
             self.categoryLabel.text = film?.category
         }

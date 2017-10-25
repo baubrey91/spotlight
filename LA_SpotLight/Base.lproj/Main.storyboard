@@ -110,8 +110,8 @@
                                                         <constraint firstItem="U2W-EJ-Jtd" firstAttribute="centerY" secondItem="q1b-fB-6c8" secondAttribute="centerY" id="yqs-AZ-hIo"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Avt-Lv-JVO" userLabel="Container" customClass="GradientView" customModule="LA_SpotLight" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="76" width="359" height="247"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avt-Lv-JVO" userLabel="Container" customClass="GradientView" customModule="LA_SpotLight" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="76" width="359" height="380"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AH1-cd-03y">
                                                             <rect key="frame" x="8" y="8" width="343" height="180"/>

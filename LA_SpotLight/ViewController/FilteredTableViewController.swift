@@ -11,28 +11,27 @@ import UIKit
 
 class FilteredTableViewController: TableViewBaseViewController {
 
-    //----------------//
+    //-------------------------//
     //MARK:- Variables
-    //----------------//
+    //--------------------------//
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var categoryString = ""
-    var dateArray = [FilmLocation]()
-    var category = false
-    var film = FilmLocation.self
+    var categoryString: String!
+    private var dateArray = [FilmLocation]()
+    private var category = false
+    private var film = FilmLocation.self
 
-    //----------------//
+    //--------------------------//
     //MARK:- View Life Cycle
-    //----------------//
+    //--------------------------//
     
     override func viewDidLoad() {
         
         self.title = categoryString
         setup()
         filteredArray = filmLocations.filter { $0.category.contains(categoryString) }
-        
-        filmLocations.sort(by: {$0.production! < $1.production! })
+        filmLocations.sort(by: { $0.production! < $1.production! } )
         dateArray = filmLocations
         categoryArray.sort(by: {$0 < $1 })
         dateArray.sort(by: {$0.date?.compare($1.date! as Date) == ComparisonResult.orderedAscending })
@@ -45,9 +44,9 @@ class FilteredTableViewController: TableViewBaseViewController {
     }
 }
 
-    //----------------//
+    //--------------------------//
     //MARK:- SearchBar
-    //----------------//
+    //--------------------------//
 
 extension FilteredTableViewController: UISearchBarDelegate {
     

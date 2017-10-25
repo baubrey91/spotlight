@@ -28,9 +28,17 @@ struct cCells {
 
 struct cFilmLocation {
     static let category = "category"
-    //static let filmCell = "filmCell"
+    static let date = "date"
+    static let location = "location"
+    static let coordinates = "cordinates"
+    static let locationAddress = "location_address"
+    static let permitNumber = "permit_no"
+    static let unknown = "unknown"
+    static let production = "production"
+    static let productionCompany = "production_company"
 }
 
 struct cDate {
     static let janFirst = "-01-01"
+    static let dateFormat = "yyyy-MM-dd"
 }

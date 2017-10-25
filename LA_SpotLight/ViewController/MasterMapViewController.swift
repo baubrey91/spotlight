@@ -36,6 +36,10 @@ class MasterMapViewController: UIViewController {
         configureButton()
         centerMapOnLocation(location: initialLocation)
     }
+   
+    //-----------------------//
+    //MARK:- Functions
+    //-----------------------//
     
     fileprivate func configureButton() {
         closeButton.layer.shadowColor = UIColor.black.cgColor
