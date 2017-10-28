@@ -28,7 +28,6 @@ class Client {
     fileprivate let session = URLSession.shared
     
     func callAPI(endPoint: Endpoint, completionHandler: @escaping ((_ assignemnts: Any) -> Void)) {
-        
         if let url = URL(string: endPoint.url) {
             let task = session.dataTask(with: url,
                                         completionHandler: { data, response, error -> Void in

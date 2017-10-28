@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//filter enum
 enum filterMode {
     case film
     case category
@@ -55,6 +56,7 @@ class FilmTableViewController: TableViewBaseViewController {
     //----------------------//
     
     private func callAPI() {
+        //call API and set UI
         Client.sharedInstance.callAPI(endPoint: .getFilms()) { [unowned self]
             json in DispatchQueue.main.async {
                 self.filmLocations = FilmLocation.filmLocations(array: json as! [payload])
@@ -80,7 +82,6 @@ class FilmTableViewController: TableViewBaseViewController {
     //----------------------//
 
     @IBAction func mapButton(_ sender: AnyObject) {
-        
 
     }
 }
@@ -117,25 +118,12 @@ extension FilmTableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard case let cell as FoldingCell = cell else {
-            return
-        }
-                
-        if cellHeights[indexPath.row] == kCloseCellHeight {
-            cell.unfold(false)
-        } else {
-            cell.unfold(true)
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch currentMode {
         case .film:
             let cell = tableView.dequeueReusableCell(withIdentifier: cCells.foldingCell, for: indexPath) as! FilmDetailCell
-            let durations: [TimeInterval] = [0.26, 0.2, 0.2]
-            cell.durationsForExpandedState = durations
-            cell.durationsForCollapsedState = durations
+            cell.durationsForExpandedState = cCells.durations
+            cell.durationsForCollapsedState = cCells.durations
             cell.film = filteredArray[indexPath.row]
             cell.delegate = self
             return cell
@@ -162,17 +150,17 @@ extension FilmTableViewController {
                 return
             }
             
-            var duration = 0.0
+            var duration: Double
             let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
             if cellIsCollapsed {
                 
                 cellHeights[indexPath.row] = kOpenCellHeight
-                cell.unfold(true)
-                duration = 0.6
+                cell.unfold(true, animated: true, completion: nil)
+                duration = cCells.unfoldDuration
             } else {
                 cellHeights[indexPath.row] = kCloseCellHeight
-                cell.unfold(false)
-                duration = 1.2
+                cell.unfold(false, animated: true, completion: nil)
+                duration = cCells.foldDuration
             }
             
             UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { _ in

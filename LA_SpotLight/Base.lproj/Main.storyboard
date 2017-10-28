@@ -72,15 +72,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="379" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6LS-Zv-gaI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="328" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6LS-Zv-gaI">
                                 <rect key="frame" x="0.0" y="120" width="375" height="628"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoldingCell" rowHeight="379" id="B1v-Ej-Zoy" customClass="FilmDetailCell" customModule="LA_SpotLight" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="379"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoldingCell" rowHeight="328" id="B1v-Ej-Zoy" customClass="FilmDetailCell" customModule="LA_SpotLight" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="328"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B1v-Ej-Zoy" id="ehp-zY-Mza">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="379"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="328"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3v-2F-2s8" userLabel="Foreground" customClass="RotatedView" customModule="LA_SpotLight" customModuleProvider="target">
@@ -111,7 +111,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avt-Lv-JVO" userLabel="Container" customClass="GradientView" customModule="LA_SpotLight" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="76" width="359" height="380"/>
+                                                    <rect key="frame" x="8" y="76" width="359" height="240"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AH1-cd-03y">
                                                             <rect key="frame" x="8" y="8" width="343" height="180"/>
@@ -177,7 +177,7 @@
                                                             </constraints>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbW-AU-6CP">
-                                                            <rect key="frame" x="8" y="196" width="343" height="42"/>
+                                                            <rect key="frame" x="8" y="190" width="343" height="42"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" title="MAP"/>
@@ -190,7 +190,7 @@
                                                     <constraints>
                                                         <constraint firstItem="AH1-cd-03y" firstAttribute="leading" secondItem="Avt-Lv-JVO" secondAttribute="leading" constant="8" id="MYm-4S-syI"/>
                                                         <constraint firstItem="AH1-cd-03y" firstAttribute="top" secondItem="Avt-Lv-JVO" secondAttribute="top" constant="8" id="ieH-FL-Y2a"/>
-                                                        <constraint firstAttribute="height" constant="380" id="mAX-MV-jZK"/>
+                                                        <constraint firstAttribute="height" constant="240" id="mAX-MV-jZK"/>
                                                         <constraint firstAttribute="trailing" secondItem="AH1-cd-03y" secondAttribute="trailing" constant="8" id="qzb-OU-bB9"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -241,7 +241,7 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="WA6-X2-ljt">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WA6-X2-ljt" id="UzY-lN-a9I">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -312,15 +312,15 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yr4-aI-qul">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="328" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yr4-aI-qul">
                                 <rect key="frame" x="0.0" y="72" width="414" height="664"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoldingCell" rowHeight="539" id="df3-n2-u9p" customClass="FilmDetailCell" customModule="LA_SpotLight" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="539"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoldingCell" rowHeight="328" id="df3-n2-u9p" customClass="FilmDetailCell" customModule="LA_SpotLight" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="328"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="df3-n2-u9p" id="VAv-LA-imo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="539"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="327.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTh-8e-Jdc" userLabel="Foreground" customClass="RotatedView" customModule="LA_SpotLight" customModuleProvider="target">
@@ -339,8 +339,8 @@
                                                         <constraint firstAttribute="height" constant="60" id="oDr-04-szj"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zb2-bg-LEN" userLabel="Container" customClass="GradientView" customModule="LA_SpotLight" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="76" width="398" height="238"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zb2-bg-LEN" userLabel="Container" customClass="GradientView" customModule="LA_SpotLight" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="76" width="398" height="240"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CwE-MR-Ezo">
                                                             <rect key="frame" x="8" y="8" width="382" height="180"/>
@@ -394,7 +394,7 @@
                                                             </constraints>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ay8-fo-mu6">
-                                                            <rect key="frame" x="8" y="196" width="382" height="42"/>
+                                                            <rect key="frame" x="8" y="190" width="382" height="42"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" title="Map"/>
@@ -405,7 +405,7 @@
                                                         <constraint firstItem="CwE-MR-Ezo" firstAttribute="leading" secondItem="zb2-bg-LEN" secondAttribute="leading" constant="8" id="53h-DO-a4s"/>
                                                         <constraint firstItem="CwE-MR-Ezo" firstAttribute="top" secondItem="zb2-bg-LEN" secondAttribute="top" constant="8" id="8VF-4R-Bff"/>
                                                         <constraint firstAttribute="trailing" secondItem="CwE-MR-Ezo" secondAttribute="trailing" constant="8" id="J6C-8X-vjR"/>
-                                                        <constraint firstAttribute="height" constant="380" id="r7m-kC-ohe"/>
+                                                        <constraint firstAttribute="height" constant="240" id="r7m-kC-ohe"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -477,16 +477,16 @@
         <scene sceneID="ppt-pU-QMm">
             <objects>
                 <tableViewController storyboardIdentifier="filteredDatesTableViewController" id="xpp-mX-d8j" customClass="FilteredDatesTableViewController" customModule="LA_SpotLight" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ub4-mz-yxS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="328" sectionHeaderHeight="28" sectionFooterHeight="28" id="ub4-mz-yxS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoldingCell" rowHeight="539" id="t2g-ij-BGk" customClass="FilmDetailCell" customModule="LA_SpotLight" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="539"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoldingCell" rowHeight="328" id="t2g-ij-BGk" customClass="FilmDetailCell" customModule="LA_SpotLight" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="328"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t2g-ij-BGk" id="RZl-zl-nTB">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="539"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="327.66666666666669"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="osF-fW-wk0" userLabel="Foreground" customClass="RotatedView" customModule="LA_SpotLight" customModuleProvider="target">
@@ -505,8 +505,8 @@
                                                 <constraint firstAttribute="height" constant="60" id="GBT-BG-W2C"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="grA-bV-I45" userLabel="Container" customClass="GradientView" customModule="LA_SpotLight" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="76" width="398" height="258"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grA-bV-I45" userLabel="Container" customClass="GradientView" customModule="LA_SpotLight" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="76" width="398" height="240"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jgf-kC-1yw">
                                                     <rect key="frame" x="8" y="8" width="382" height="180"/>
@@ -560,7 +560,7 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLS-hW-91x">
-                                                    <rect key="frame" x="8" y="196" width="382" height="42"/>
+                                                    <rect key="frame" x="8" y="190" width="382" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="MAP"/>
@@ -570,7 +570,7 @@
                                             <constraints>
                                                 <constraint firstItem="Jgf-kC-1yw" firstAttribute="leading" secondItem="grA-bV-I45" secondAttribute="leading" constant="8" id="CDc-KH-YVb"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jgf-kC-1yw" secondAttribute="trailing" constant="8" id="MdZ-4l-VuG"/>
-                                                <constraint firstAttribute="height" constant="380" id="N59-9B-6OD"/>
+                                                <constraint firstAttribute="height" constant="240" id="N59-9B-6OD"/>
                                                 <constraint firstItem="Jgf-kC-1yw" firstAttribute="top" secondItem="grA-bV-I45" secondAttribute="top" constant="8" id="wwy-Bn-aiE"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -595,7 +595,7 @@
                                 </tableViewCellContentView>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="itemCount">
-                                        <integer key="value" value="6"/>
+                                        <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>

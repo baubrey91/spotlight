@@ -11,15 +11,15 @@ import UIKit
 
 class FilteredDatesTableViewController: TableViewBaseViewController {
     
-    //----------------//
+    //--------------------------//
     //MARK:- Variables
-    //----------------//
+    //--------------------------//
     
     var year: Int?
     
-    //----------------//
+    //--------------------------//
     //MARK:- View Life Cycle
-    //----------------//
+    //--------------------------//
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,10 @@ class FilteredDatesTableViewController: TableViewBaseViewController {
         
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
     }
+    
+    //--------------------------//
+    //MARK:- Functions
+    //--------------------------//
     
     private func setUpDateArray(year: Int) {
         var startString:    String

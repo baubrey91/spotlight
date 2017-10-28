@@ -24,6 +24,11 @@ struct cStoryboards {
 struct cCells {
     static let foldingCell = "FoldingCell"
     static let filmCell = "filmCell"
+    static let unfoldDuration = 0.6
+    static let foldDuration = 1.2
+    static let durations: [TimeInterval] = [0.26, 0.2, 0.2, 0.2]
+
+    
 }
 
 struct cFilmLocation {
@@ -42,3 +47,4 @@ struct cDate {
     static let janFirst = "-01-01"
     static let dateFormat = "yyyy-MM-dd"
 }
+

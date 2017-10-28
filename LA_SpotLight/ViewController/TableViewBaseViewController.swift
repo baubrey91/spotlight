@@ -38,10 +38,10 @@ class TableViewBaseViewController: UIViewController {
     }
 }
 
- 
     //---------------//
     //MARK:- Table View 
     //---------------//
+
 extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,21 +53,18 @@ extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSourc
             return
         }
         
-        cell.backgroundColor = .clear
-        
         if cellHeights[indexPath.row] == kCloseCellHeight {
-            cell.unfold(false)
+            cell.unfold(false, animated: false, completion: nil)
         } else {
-            cell.unfold(true)
+            cell.unfold(true, animated: false, completion: nil)
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cCells.foldingCell, for: indexPath) as! FilmDetailCell
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2, 0.2]
-        cell.durationsForExpandedState = durations
-        cell.durationsForCollapsedState = durations
+        cell.durationsForExpandedState = cCells.durations
+        cell.durationsForCollapsedState = cCells.durations
         cell.film = filteredArray[indexPath.row]
         return cell
     }
@@ -77,7 +74,6 @@ extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let cell = tableView.cellForRow(at: indexPath) as! FilmDetailCell
         if cell.isAnimating() {
             return
@@ -88,12 +84,12 @@ extension TableViewBaseViewController: UITableViewDelegate, UITableViewDataSourc
         if cellIsCollapsed {
             
             cellHeights[indexPath.row] = kOpenCellHeight
-            cell.unfold(true)
-            duration = 1.0
+            cell.unfold(true, animated: true, completion: nil)
+            duration = cCells.unfoldDuration
         } else {
             cellHeights[indexPath.row] = kCloseCellHeight
-            cell.unfold(false)
-            duration = 1.2
+            cell.unfold(false, animated: true, completion: nil)
+            duration = cCells.foldDuration
         }
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { _ in
