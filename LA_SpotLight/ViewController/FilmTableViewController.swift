@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-//filter enum
+//Filter Enum
 enum filterMode {
     case film
     case category
@@ -49,6 +49,10 @@ class FilmTableViewController: TableViewBaseViewController {
         segmentControl.segmentControlDelegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cCells.filmCell)
         filteredArray = filmLocations
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        animateTableView()
     }
    
     //----------------------//
@@ -130,10 +134,12 @@ extension FilmTableViewController {
         case .category:
             let cell = tableView.dequeueReusableCell(withIdentifier: cCells.filmCell, for: indexPath) as UITableViewCell
             cell.textLabel?.text = filteredCatArray[indexPath.row]
+            cell.backgroundColor = UIColor.clear
             return cell
         case .date:
             let cell = tableView.dequeueReusableCell(withIdentifier: cCells.filmCell, for: indexPath) as UITableViewCell
             cell.textLabel?.text = yearsArray[indexPath.row]
+            cell.backgroundColor = UIColor.clear
             return cell
         }
     }
@@ -204,7 +210,7 @@ extension FilmTableViewController: ScrollableSegmentControlDelegate {
             searchBar.isHidden = true
             currentMode = .date
         }
-        tableView.reloadData()
+        animateTableView()
     }
 }
 

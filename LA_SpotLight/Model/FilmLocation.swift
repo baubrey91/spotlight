@@ -11,23 +11,19 @@ import MapKit
 
 class FilmLocation {
     
-    var category: String
-    var date: NSDate?
-    var location: CLLocationCoordinate2D?
-    var locationAddress: String
-    var permitNumber : String?
-    var production : String?
+    var category:           String
+    var date:               NSDate?
+    var location:           CLLocationCoordinate2D?
+    var locationAddress:    String
+    var permitNumber :      String?
+    var production :        String?
     var productionCompany : String?
+
+    //Create object from json
     
     init (json: payload) {
         df.dateFormat = cDate.dateFormat
 
-        /*guard let location = json["location_address"] as? String
-        else {
-        return nil
-        }
-         //return nothing if there is no address!
-         */
         self.category = json[cFilmLocation.category] as! String? ?? cFilmLocation.unknown
         if let date = json[cFilmLocation.date] as? String{
             let formattedDate = date.stripTime()
@@ -45,6 +41,8 @@ class FilmLocation {
         self.production = (json[cFilmLocation.production] as? String)
         self.productionCompany = (json[cFilmLocation.productionCompany] as? String)
     }
+    
+    //Helper function to turn json to array of objects
     
     class func filmLocations(array: [payload]) -> [FilmLocation] {
         var filmLocations = [FilmLocation]()

@@ -28,7 +28,7 @@ class FilteredDatesTableViewController: TableViewBaseViewController {
             setUpDateArray(year: year)
         }
         
-        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
+        //cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
     }
     
     //--------------------------//

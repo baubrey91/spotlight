@@ -33,22 +33,20 @@ class MasterMapViewController: UIViewController {
             let pin = Pin(title: film.production!, coordinate: film.location!)
             mapView.addAnnotation(pin)
         }
-        configureButton()
+        
         centerMapOnLocation(location: initialLocation)
     }
-   
+  
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        mapView.delegate = nil
+        mapView.removeFromSuperview()
+        mapView = nil
+    }
+    
     //-----------------------//
     //MARK:- Functions
     //-----------------------//
-    
-    fileprivate func configureButton() {
-        closeButton.layer.shadowColor = UIColor.black.cgColor
-        closeButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        closeButton.layer.masksToBounds = false
-        closeButton.layer.shadowRadius = 1.0
-        closeButton.layer.shadowOpacity = 0.5
-        closeButton.layer.cornerRadius = closeButton.frame.width / 2
-    }
     
     fileprivate func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
