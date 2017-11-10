@@ -144,7 +144,7 @@
 				CA74E70C1F79769E004CF945 /* Other */,
 				CA74E7071F796CEC004CF945 /* Objective-C */,
 				CA74E7061F796C23004CF945 /* API */,
-				CA4541691F702B1A00BADDFA /* ViewController */,
+				CA4541691F702B1A00BADDFA /* Controller */,
 				CA4541681F702B1500BADDFA /* View */,
 				CA4541671F702B0D00BADDFA /* Model */,
 				39591CE81D9B697A00427C25 /* Main.storyboard */,
@@ -203,7 +203,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CA4541691F702B1A00BADDFA /* ViewController */ = {
+		CA4541691F702B1A00BADDFA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				39591D1E1D9E13C300427C25 /* FilmTableViewController.swift */,
@@ -212,6 +212,7 @@
 				39E9FA871DA762EA003DC7D4 /* MasterMapViewController.swift */,
 				CA7A10AE1F7DBCB5007ED992 /* TableViewBaseViewController.swift */,
 			);
+			name = Controller;
 			path = ViewController;
 			sourceTree = "<group>";
 		};

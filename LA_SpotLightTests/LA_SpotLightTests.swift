@@ -34,4 +34,10 @@ class LA_SpotLightTests: XCTestCase {
         let result = dateTwo.isLessThanDate(dateToCompare: dateOne as Date)
         XCTAssert(result)
     }
+    
+    func testEmpyFilmLocationsArray() {
+        //let testFilm = FilmLocation(json: [String: Any]())
+        let emptyArray = FilmLocation.filmLocations(array: [[String: Any]]())
+        XCTAssertEqual(emptyArray.count, 0)
+    }
 }

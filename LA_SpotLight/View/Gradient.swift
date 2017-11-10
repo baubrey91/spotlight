@@ -11,6 +11,10 @@ import UIKit
 
 @IBDesignable
 class GradientView: UIView {
+   
+    //------------------------------//
+    //Interface Variables
+    //------------------------------//
     
     @IBInspectable var startColor:   UIColor = .black { didSet { updateColors() }}
     @IBInspectable var endColor:     UIColor = .white { didSet { updateColors() }}

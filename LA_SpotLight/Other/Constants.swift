@@ -27,8 +27,6 @@ struct cCells {
     static let unfoldDuration = 0.6
     static let foldDuration = 1.2
     static let durations: [TimeInterval] = [0.26, 0.2, 0.2, 0.2]
-
-    
 }
 
 struct cFilmLocation {
@@ -46,5 +44,9 @@ struct cFilmLocation {
 struct cDate {
     static let janFirst = "-01-01"
     static let dateFormat = "yyyy-MM-dd"
+}
+
+struct Warnings {
+    static let noInternet = "Please Check Internet Connection"
 }
 

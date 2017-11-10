@@ -20,7 +20,6 @@ class FilmLocation {
     var productionCompany : String?
 
     //Create object from json
-    
     init (json: payload) {
         df.dateFormat = cDate.dateFormat
 
@@ -33,7 +32,7 @@ class FilmLocation {
         
         let coordinatesJSON = json[cFilmLocation.coordinates] as? [String:Any]
         if let cordinateArr = coordinatesJSON?[cFilmLocation.coordinates] as? [Double]{
-            self.location = CLLocationCoordinate2D(latitude:(cordinateArr[1]), longitude: (cordinateArr[0])) //((cordinateArr[1]), (cordinateArr[0]))
+            self.location = CLLocationCoordinate2D(latitude:(cordinateArr[1]), longitude: (cordinateArr[0]))
         }
         
         self.locationAddress = json[cFilmLocation.locationAddress] as? String ?? cFilmLocation.unknown

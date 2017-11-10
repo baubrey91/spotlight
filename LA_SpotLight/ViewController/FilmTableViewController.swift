@@ -36,14 +36,15 @@ class FilmTableViewController: TableViewBaseViewController {
     fileprivate var filteredCatArray = [String]()
     private var category =             false
     private var film =                 FilmLocation.self
-   
+    
     //----------------------//
     //MARK:- VIEW LIFE CYCLE
     //----------------------//
     
     override func viewDidLoad() {
         
-        callAPI()
+        checkNetwork()
+        
         setup()
         setupSearchBar()
         segmentControl.segmentControlDelegate = self
@@ -58,6 +59,14 @@ class FilmTableViewController: TableViewBaseViewController {
     //----------------------//
     //MARK:- FUNCTIONS
     //----------------------//
+    
+    private func checkNetwork() {
+        if Reachability.isConnectedToNetwork() {
+            callAPI()
+        } else {
+            self.navigationItem.prompt = Warnings.noInternet
+        }
+    }
     
     private func callAPI() {
         //call API and set UI

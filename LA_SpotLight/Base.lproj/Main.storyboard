@@ -177,10 +177,12 @@
                                                                 <constraint firstItem="YVC-7F-fup" firstAttribute="top" secondItem="axd-AH-eJJ" secondAttribute="bottom" constant="8" symbolic="YES" id="zDC-MG-dx6"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbW-AU-6CP" customClass="CustomButton" customModule="LA_SpotLight" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbW-AU-6CP" customClass="CustomButton" customModule="LA_SpotLight" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="190" width="343" height="42"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="42" id="VrJ-iH-RoP"/>
+                                                            </constraints>
                                                             <state key="normal" title="MAP"/>
                                                             <connections>
                                                                 <action selector="mapButton:" destination="B1v-Ej-Zoy" eventType="touchUpInside" id="Tas-Bp-byj"/>
@@ -189,10 +191,13 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="YbW-AU-6CP" firstAttribute="leading" secondItem="Avt-Lv-JVO" secondAttribute="leading" constant="8" id="6Cw-cS-I7z"/>
                                                         <constraint firstItem="AH1-cd-03y" firstAttribute="leading" secondItem="Avt-Lv-JVO" secondAttribute="leading" constant="8" id="MYm-4S-syI"/>
                                                         <constraint firstItem="AH1-cd-03y" firstAttribute="top" secondItem="Avt-Lv-JVO" secondAttribute="top" constant="8" id="ieH-FL-Y2a"/>
                                                         <constraint firstAttribute="height" constant="240" id="mAX-MV-jZK"/>
+                                                        <constraint firstAttribute="trailing" secondItem="YbW-AU-6CP" secondAttribute="trailing" constant="8" id="ohn-G5-b8n"/>
                                                         <constraint firstAttribute="trailing" secondItem="AH1-cd-03y" secondAttribute="trailing" constant="8" id="qzb-OU-bB9"/>
+                                                        <constraint firstAttribute="bottom" secondItem="YbW-AU-6CP" secondAttribute="bottom" constant="8" id="spY-dW-2JU"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -240,13 +245,6 @@
                                     <outlet property="delegate" destination="c6h-hJ-T0Q" id="JCH-fh-14A"/>
                                 </connections>
                             </tableView>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="WA6-X2-ljt">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WA6-X2-ljt" id="UzY-lN-a9I">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcd-b2-0rv" customClass="ScrollableSegmentControl" customModule="LA_SpotLight" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="48"/>
                                 <color key="backgroundColor" red="0.76470588240000004" green="1" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -267,14 +265,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pcd-b2-0rv" firstAttribute="trailing" secondItem="WA6-X2-ljt" secondAttribute="trailing" id="4mA-D1-7Nh"/>
                             <constraint firstItem="3NR-4U-4fh" firstAttribute="leading" secondItem="iL3-5h-2T7" secondAttribute="leading" id="8xb-tg-U4T"/>
                             <constraint firstItem="pcd-b2-0rv" firstAttribute="top" secondItem="ytC-mb-nRC" secondAttribute="bottom" id="DYb-uj-oD8"/>
                             <constraint firstItem="6LS-Zv-gaI" firstAttribute="leading" secondItem="iL3-5h-2T7" secondAttribute="leading" id="KPS-kv-VQ5"/>
                             <constraint firstItem="6LS-Zv-gaI" firstAttribute="trailing" secondItem="3NR-4U-4fh" secondAttribute="trailing" id="VDt-VK-NzN"/>
                             <constraint firstAttribute="trailing" secondItem="3NR-4U-4fh" secondAttribute="trailing" id="VUW-sm-ZPL"/>
                             <constraint firstAttribute="trailing" secondItem="pcd-b2-0rv" secondAttribute="trailing" id="bTO-Uv-QDd"/>
-                            <constraint firstItem="pcd-b2-0rv" firstAttribute="leading" secondItem="WA6-X2-ljt" secondAttribute="leading" id="c6g-Hm-g9A"/>
                             <constraint firstItem="6LS-Zv-gaI" firstAttribute="top" secondItem="pcd-b2-0rv" secondAttribute="bottom" constant="8" id="gf1-dn-erj"/>
                             <constraint firstItem="pcd-b2-0rv" firstAttribute="leading" secondItem="iL3-5h-2T7" secondAttribute="leading" id="i1H-Hr-WSs"/>
                             <constraint firstItem="3NR-4U-4fh" firstAttribute="top" secondItem="6LS-Zv-gaI" secondAttribute="bottom" constant="8" id="jYp-sK-Jm8"/>
@@ -304,7 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prw-ij-ijX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3736.9565217391309" y="59.510869565217398"/>
+            <point key="canvasLocation" x="3729.7101449275365" y="98.641304347826093"/>
         </scene>
         <!--Filtered Table View Controller-->
         <scene sceneID="LqH-Jd-pCx">
